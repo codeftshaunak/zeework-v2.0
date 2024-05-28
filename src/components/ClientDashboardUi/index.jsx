@@ -6,7 +6,7 @@ import {
   StackDivider,
 } from "@chakra-ui/react";
 import { useEffect, useRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useRouter } from 'next/router';
 import { formatDistanceToNow } from "date-fns";
 import ClientProfileCard from "./ClientProfileCard";
 import {
@@ -20,7 +20,8 @@ import Greetings from "../Common/Greetings";
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md";
 
 const ClientDashboardComponent = () => {
-  const navigate = useNavigate();
+  const router = useRouter();
+
   const [isLoading, setIsLoading] = useState(false);
   const [hiredList, setHiredList] = useState([]);
   const [jobs, setJobs] = useState([]);
@@ -114,8 +115,8 @@ const ClientDashboardComponent = () => {
                 onBeforeInit={(swiper) => {
                   swiperRef.current = swiper;
                 }}
-                // onSlideChange={() => console.log("slide change")}
-                // onSwiper={(swiper) => console.log(swiper)}
+              // onSlideChange={() => console.log("slide change")}
+              // onSwiper={(swiper) => console.log(swiper)}
               >
                 {uniqueHired?.length > 0 &&
                   uniqueHired
@@ -160,7 +161,7 @@ const ClientDashboardComponent = () => {
                     <Button
                       colorScheme="primary"
                       w={"12rem"}
-                      onClick={() => navigate("/create-job")}
+                      onClick={() => router.push("/create-job")}
                     >
                       Post a new job
                     </Button>
@@ -222,7 +223,7 @@ const ClientDashboardComponent = () => {
                               justifyContent={"center"}
                               cursor={"pointer"}
                               onClick={() => {
-                                navigate(`/client-jobDetails/${job?._id}`, {
+                                router(`/client-jobDetails/${job?._id}`, {
                                   state: { jobDetails: job },
                                 });
                               }}
@@ -249,9 +250,9 @@ const ClientDashboardComponent = () => {
                                   {job?.proposal_details?.length === 0
                                     ? "No"
                                     : job?.proposal_details?.filter(
-                                        (item) =>
-                                          item.contract_status === "applied"
-                                      )?.length}{" "}
+                                      (item) =>
+                                        item.contract_status === "applied"
+                                    )?.length}{" "}
                                   New Applicants
                                 </div>
                               </HStack>
@@ -269,7 +270,7 @@ const ClientDashboardComponent = () => {
                                   color: "#fff",
                                 }}
                                 onClick={() => {
-                                  navigate(`/client-jobDetails/${job._id}`, {
+                                  router(`/client-jobDetails/${job._id}`, {
                                     state: { jobDetails: job },
                                   });
                                 }}
@@ -290,7 +291,7 @@ const ClientDashboardComponent = () => {
                                   color: "#fff",
                                 }}
                                 onClick={() => {
-                                  navigate(`/client-jobDetails/${job._id}`, {
+                                  router(`/client-jobDetails/${job._id}`, {
                                     state: { jobDetails: job },
                                   });
                                 }}
@@ -306,9 +307,8 @@ const ClientDashboardComponent = () => {
                       {pages?.length > 1 && (
                         <div className="flex gap-5 justify-end mt-5 text-[var(--primarycolor)] font-semibold">
                           <button
-                            className={`flex gap-2 items-center ${
-                              page === 1 && "text-gray-300"
-                            }`}
+                            className={`flex gap-2 items-center ${page === 1 && "text-gray-300"
+                              }`}
                             onClick={() => setPage(page - 1)}
                             disabled={page === 1}
                           >
@@ -319,11 +319,10 @@ const ClientDashboardComponent = () => {
                             {pages.map((p) => (
                               <button
                                 key={p}
-                                className={`mx-1 w-7 h-7 rounded-full border border-[var(--primarycolor)]  ${
-                                  page === p
-                                    ? "bg-[var(--primarycolor)] text-white"
-                                    : "bg-white"
-                                }`}
+                                className={`mx-1 w-7 h-7 rounded-full border border-[var(--primarycolor)]  ${page === p
+                                  ? "bg-[var(--primarycolor)] text-white"
+                                  : "bg-white"
+                                  }`}
                                 onClick={() => setPage(p)}
                               >
                                 {p}
@@ -332,10 +331,9 @@ const ClientDashboardComponent = () => {
                           </div>
 
                           <button
-                            className={`flex gap-2 items-center ${
-                              page === pages[pages.length - 1] &&
+                            className={`flex gap-2 items-center ${page === pages[pages.length - 1] &&
                               "text-gray-300"
-                            }`}
+                              }`}
                             onClick={() => setPage(page + 1)}
                             disabled={page === pages[pages.length - 1]}
                           >
@@ -362,7 +360,7 @@ const ClientDashboardComponent = () => {
                 padding={"30px 0"}
                 textTransform={"capitalize"}
                 onClick={() => {
-                  navigate("/create-job");
+                  router.push("/create-job");
                 }}
               >
                 Post a new job
@@ -385,7 +383,7 @@ const ClientDashboardComponent = () => {
                   <p
                     className="ml-3 cursor-pointer"
                     onClick={() => {
-                      navigate("/setting/billing-payments");
+                      router.push("/setting/billing-payments");
                     }}
                   >
                     Add Your Billing Method
@@ -401,7 +399,7 @@ const ClientDashboardComponent = () => {
                   <p
                     className="ml-3 cursor-pointer"
                     onClick={() => {
-                      navigate("/create-job");
+                      router.push("/create-job");
                     }}
                   >
                     Post Your First Job
@@ -417,7 +415,7 @@ const ClientDashboardComponent = () => {
                   <p
                     className="ml-3 cursor-pointer"
                     onClick={() => {
-                      navigate("/setting/billing-payments");
+                      router.push("/setting/billing-payments");
                     }}
                   >
                     Invite Talent To Apply
@@ -502,7 +500,7 @@ const ClientDashboardComponent = () => {
                             justifyContent={"center"}
                             cursor={"pointer"}
                             onClick={() => {
-                              navigate(`/client-jobDetails/${job?._id}`, {
+                              router(`/client-jobDetails/${job?._id}`, {
                                 state: { jobDetails: job },
                               });
                             }}
@@ -547,7 +545,7 @@ const ClientDashboardComponent = () => {
                                 color: "#fff",
                               }}
                               onClick={() => {
-                                navigate(`/client-jobDetails/${job._id}`, {
+                                router(`/client-jobDetails/${job._id}`, {
                                   state: { jobDetails: job },
                                 });
                               }}
@@ -568,7 +566,7 @@ const ClientDashboardComponent = () => {
                                 color: "#fff",
                               }}
                               onClick={() => {
-                                navigate(`/client-jobDetails/${job._id}`, {
+                                router(`/client-jobDetails/${job._id}`, {
                                   state: { jobDetails: job },
                                 });
                               }}
@@ -584,9 +582,8 @@ const ClientDashboardComponent = () => {
                   {pages?.length > 1 && (
                     <div className="flex gap-5 justify-end mt-5 text-[var(--primarycolor)] font-semibold">
                       <button
-                        className={`flex gap-2 items-center ${
-                          page === 1 && "text-gray-300"
-                        }`}
+                        className={`flex gap-2 items-center ${page === 1 && "text-gray-300"
+                          }`}
                         onClick={() => setPage(page - 1)}
                         disabled={page === 1}
                       >
@@ -597,11 +594,10 @@ const ClientDashboardComponent = () => {
                         {pages.map((p) => (
                           <button
                             key={p}
-                            className={`mx-1 w-7 h-7 rounded-full border border-[var(--primarycolor)]  ${
-                              page === p
-                                ? "bg-[var(--primarycolor)] text-white"
-                                : "bg-white"
-                            }`}
+                            className={`mx-1 w-7 h-7 rounded-full border border-[var(--primarycolor)]  ${page === p
+                              ? "bg-[var(--primarycolor)] text-white"
+                              : "bg-white"
+                              }`}
                             onClick={() => setPage(p)}
                           >
                             {p}
@@ -610,9 +606,8 @@ const ClientDashboardComponent = () => {
                       </div>
 
                       <button
-                        className={`flex gap-2 items-center ${
-                          page === pages[pages.length - 1] && "text-gray-300"
-                        }`}
+                        className={`flex gap-2 items-center ${page === pages[pages.length - 1] && "text-gray-300"
+                          }`}
                         onClick={() => setPage(page + 1)}
                         disabled={page === pages[pages.length - 1]}
                       >

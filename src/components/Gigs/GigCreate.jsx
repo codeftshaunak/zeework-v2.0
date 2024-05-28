@@ -6,7 +6,7 @@ import Step1 from "./Steps/Step1";
 import Step2 from "./Steps/Step2";
 import Step3 from "./Steps/Step3";
 import Step4 from "./Steps/Step4";
-import { useNavigate } from "react-router-dom";
+import { useRouter } from 'next/router';
 import { uploadImages, uploadMedia } from "../../helpers/APIs/gigApis";
 import BtnSpinner from "../Skeletons/BtnSpinner";
 import UniversalModal from "../Modals/UniversalModal";
@@ -19,7 +19,8 @@ export const GigCreate = ({
   goBackward,
 }) => {
   const [formData, setFormData] = useState({});
-  const navigate = useNavigate();
+  const router = useRouter();
+
   const [isLoading, setIsLoading] = useState(false);
   const [isModal, setIsModal] = useState(false);
   const [modalType, setIsModalType] = useState("");
@@ -140,14 +141,14 @@ export const GigCreate = ({
       }
     } catch (error) {
       console.log(error);
-      navigate(-1);
+      router(-1);
     } finally {
       setIsLoading(false);
     }
   };
 
   const firstPageGoBackward = () => {
-    navigate(-1);
+    router(-1);
   };
 
   const createNextGig = () => {
@@ -284,7 +285,7 @@ export const GigCreate = ({
                 <div className="w-full h-9 flex-col justify-start items-start gap-2.5 inline-flex">
                   <div
                     className="self-stretch grow shrink basis-0 px-3 py-2 bg-gray-50 rounded-md shadow border border-gray-300 justify-center items-center gap-1 inline-flex cursor-pointer"
-                    onClick={() => navigate("/find-job")}
+                    onClick={() => router.push("/find-job")}
                   >
                     <div className="text-center text-gray-700 text-sm font-medium font-['SF Pro Text'] leading-tight">
                       Back to Home
@@ -325,7 +326,7 @@ export const GigCreate = ({
                   <div
                     className="self-stretch h-9 px-3 py-2 bg-green-500 rounded-md shadow justify-center items-center gap-1 inline-flex cursor-pointer"
                     onClick={() =>
-                      navigate(`/freelancer/gig/edit/${storedGigId}`)
+                      router(`/freelancer/gig/edit/${storedGigId}`)
                     }
                   >
                     <div className="text-center text-white text-sm font-medium font-['SF Pro Text'] leading-tight">
@@ -345,8 +346,8 @@ export const GigCreate = ({
 export const GigCreateLayout = ({
   children,
   title,
-  onBackward = () => {},
-  onForward = () => {},
+  onBackward = () => { },
+  onForward = () => { },
   backwardBtnText = "Back",
   forwardBtnText = "Save & Continue",
   isLoading,

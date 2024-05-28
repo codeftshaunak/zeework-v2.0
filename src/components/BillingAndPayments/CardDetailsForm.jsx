@@ -21,7 +21,7 @@ import { addPaymentMethods } from "../../helpers/APIs/payments";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { billingSchema } from "../../Schema/payments";
 import BtnSpinner from "../Skeletons/BtnSpinner";
-import { useNavigate } from "react-router-dom";
+import { useRouter } from 'next/router';
 import { CurrentUserContext } from "../../Contexts/CurrentUser";
 
 export const CardDetailsForm = () => {
@@ -38,7 +38,8 @@ export const CardDetailsForm = () => {
   const stripe = useStripe();
   const elements = useElements();
   const toast = useToast();
-  const navigate = useNavigate();
+  const router = useRouter();
+
 
   useEffect(() => {
     const getCountriesList = async () => {
@@ -97,7 +98,7 @@ export const CardDetailsForm = () => {
         // some action perform
         sessionStorage.setItem("paymentNotify", "true");
         await getUserDetails();
-        if (code === 200) navigate("/client-dashboard");
+        if (code === 200) router.push("/client-dashboard");
       }
     } catch (error) {
       toast({

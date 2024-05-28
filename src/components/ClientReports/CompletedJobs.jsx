@@ -14,12 +14,13 @@ import {
 import HorizontalCardSkeleton from "../Skeletons/HorizontalCardSkeleton";
 import { PiDotsThreeOutlineFill } from "react-icons/pi";
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useRouter } from 'next/router';
 import { getCompletedJobs } from "../../helpers/APIs/clientApis";
 
 const CompletedJobs = () => {
   const [hidden, setHidden] = useState(false);
-  const navigate = useNavigate();
+  const router = useRouter();
+
   const [isLoading, setIsLoading] = useState(true);
   const [jobList, setJobList] = useState([]);
 
@@ -129,17 +130,15 @@ const CompletedJobs = () => {
                       className={item === null ? "!hidden" : ""}
                     >
                       <Td
-                        className={`text-[1rem] max-[480px]:text-[0.8rem] max-lg:${
-                          hidden ? "" : "hidden"
-                        }`}
+                        className={`text-[1rem] max-[480px]:text-[0.8rem] max-lg:${hidden ? "" : "hidden"
+                          }`}
                         textAlign={"center"}
                       >
                         {formattedDate}
                       </Td>
                       <Td
-                        className={`max-lg:!w-[100%] flex-row max-lg:${
-                          !hidden ? "" : "hidden"
-                        }`}
+                        className={`max-lg:!w-[100%] flex-row max-lg:${!hidden ? "" : "hidden"
+                          }`}
                       >
                         <div className="text-[#22C35E] text-[1rem] font-medium capitalize text-center">
                           <Text className="max-[420px]:block hidden">
@@ -156,9 +155,8 @@ const CompletedJobs = () => {
                         </div>
                       </Td>
                       <Td
-                        className={`max-lg:!w-[100%] flex-row max-lg:${
-                          !hidden ? "" : "hidden"
-                        }`}
+                        className={`max-lg:!w-[100%] flex-row max-lg:${!hidden ? "" : "hidden"
+                          }`}
                       >
                         <div className="font-medium capitalize text-center">
                           <Text className="max-[420px]:block hidden">
@@ -183,9 +181,8 @@ const CompletedJobs = () => {
                       </Td>
                       <Td
                         height={"2rem"}
-                        className={`text-[1rem] max-lg:${
-                          hidden ? "" : "hidden"
-                        }`}
+                        className={`text-[1rem] max-lg:${hidden ? "" : "hidden"
+                          }`}
                         textAlign={"center"}
                       >
                         <Text className="capitalize text-lg font-semibold">
@@ -202,9 +199,8 @@ const CompletedJobs = () => {
                       </Td>
                       <Td
                         height={"2rem"}
-                        className={`text-[1rem] max-lg:${
-                          hidden ? "" : "hidden"
-                        }`}
+                        className={`text-[1rem] max-lg:${hidden ? "" : "hidden"
+                          }`}
                         textAlign={"center"}
                       >
                         <Button
@@ -212,7 +208,7 @@ const CompletedJobs = () => {
                           rounded="full"
                           variant="outline"
                           size="sm"
-                          onClick={() => navigate(`/contract/${item._id}`)}
+                          onClick={() => router(`/contract/${item._id}`)}
                         >
                           Details
                         </Button>

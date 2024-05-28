@@ -11,7 +11,7 @@ import {
 import { useParams } from "react-router-dom";
 import { offerDetails } from "../../../helpers/APIs/freelancerApis";
 import { useToast } from "@chakra-ui/react";
-import { useNavigate } from "react-router-dom";
+import { useRouter } from 'next/router';
 import { JobDetailsSection } from "../../Invitation/JobDetails";
 import StarRatings from "react-star-ratings";
 import InvitationSkeleton from "../../Skeletons/InvitationSkeleton";
@@ -82,7 +82,8 @@ const ClientInfo = ({ clientDetails }) => (
 //   const location = useLocation();
 //   const jobState = location.state;
 //   const toast = useToast();
-//   const navigate = useNavigate();
+//   const router = useRouter();
+
 //   const [loadingSubmit, setLoadingSubmit] = useState(false);
 
 //   const handleSubmit = async (data) => {
@@ -103,7 +104,7 @@ const ClientInfo = ({ clientDetails }) => (
 //           status: "success",
 //           position: "top-right",
 //         });
-//         navigate(`/submit-review/${jobState.job_id}`);
+//         router(`/submit-review/${jobState.job_id}`);
 //       } else {
 //         toast({
 //           title: msg,
@@ -271,7 +272,8 @@ const ActiveJobDetailsComponent = () => {
   } = useForm();
   const clientDetails = jobDetails?.client_details?.[0];
   const { id } = useParams();
-  const navigate = useNavigate();
+  const router = useRouter();
+
 
   const getInvitationDetails = async () => {
     setIsLoading(true);
@@ -343,7 +345,7 @@ const ActiveJobDetailsComponent = () => {
         }
 
         dispatch(setMyJobsData({ userJobs: {} }));
-        navigate("/my-jobs");
+        router.push("/my-jobs");
       }
     } catch (error) {
       console.error(error);
@@ -525,7 +527,7 @@ const ActiveJobDetailsComponent = () => {
                           borderColor={"green.200"}
                           leftIcon={<LuMessagesSquare />}
                           onClick={() =>
-                            navigate(
+                            router(
                               `/message/${jobDetails.client_id}?contract_ref=${jobDetails._id}`
                             )
                           }
@@ -546,7 +548,7 @@ const ActiveJobDetailsComponent = () => {
                             ) : (
                               <>
                                 {jobDetails?.job_type === "fixed" &&
-                                jobDetails?.status === "task_submited" ? (
+                                  jobDetails?.status === "task_submited" ? (
                                   <Button
                                     width={"full"}
                                     border={"1px"}
@@ -594,7 +596,7 @@ const ActiveJobDetailsComponent = () => {
                                 colorScheme="primary"
                                 width={"full"}
                                 onClick={() =>
-                                  navigate(`/contract-assign/${jobDetails._id}`)
+                                  router(`/contract-assign/${jobDetails._id}`)
                                 }
                               >
                                 Assign contract to agency member

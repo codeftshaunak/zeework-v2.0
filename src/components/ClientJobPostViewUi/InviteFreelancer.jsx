@@ -17,7 +17,7 @@ import {
   Tooltip,
 } from "@chakra-ui/react";
 import { useContext, useEffect, useState } from "react";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { useLocation, userouter, useParams } from "react-router-dom";
 import ReviewProposalSkeleton from "../Skeletons/ReviewProposalSkeleton";
 import InvitedFreelancerCard from "./InvitedFreelancerCard";
 import UniversalModal from "../Modals/UniversalModal";
@@ -49,7 +49,8 @@ const InviteFreelancer = ({ appliedUsers }) => {
   const [freelancerInfo, setFreelancerInfo] = useState({});
   const [searchText, setSearchText] = useState("");
   const { socket } = useContext(SocketContext);
-  const navigate = useNavigate();
+  const router = useRouter();
+
   const toast = useToast();
   const location = useLocation();
   const jobDetails = location.state && location?.state?.jobDetails;
@@ -136,7 +137,7 @@ const InviteFreelancer = ({ appliedUsers }) => {
         hourly_rate,
         user_id,
       } = freelancerInfo;
-      navigate(`/client/hire/${user_id}`, {
+      router(`/client/hire/${user_id}`, {
         state: {
           freelancerInfo: {
             firstName,
@@ -491,10 +492,9 @@ const InviteFreelancer = ({ appliedUsers }) => {
                       {pages?.length > 0 && (
                         <div className="flex gap-5 justify-end mt-5 text-[var(--primarycolor)] font-semibold">
                           <button
-                            className={`flex gap-2 items-center ${
-                              searchResults?.current_page === 1 &&
+                            className={`flex gap-2 items-center ${searchResults?.current_page === 1 &&
                               "text-gray-300"
-                            }`}
+                              }`}
                             onClick={() =>
                               setPage(searchResults?.current_page - 1)
                             }
@@ -507,11 +507,10 @@ const InviteFreelancer = ({ appliedUsers }) => {
                             {pages.map((page) => (
                               <button
                                 key={page}
-                                className={`mx-1 w-7 h-7 rounded-full border border-[var(--primarycolor)]  ${
-                                  searchResults?.current_page === page
-                                    ? "bg-[var(--primarycolor)] text-white"
-                                    : "bg-white"
-                                }`}
+                                className={`mx-1 w-7 h-7 rounded-full border border-[var(--primarycolor)]  ${searchResults?.current_page === page
+                                  ? "bg-[var(--primarycolor)] text-white"
+                                  : "bg-white"
+                                  }`}
                                 onClick={() => setPage(page)}
                               >
                                 {page}
@@ -520,10 +519,9 @@ const InviteFreelancer = ({ appliedUsers }) => {
                           </div>
 
                           <button
-                            className={`flex gap-2 items-center ${
-                              searchResults?.current_page ===
-                                pages[pages?.length - 1] && "text-gray-300"
-                            }`}
+                            className={`flex gap-2 items-center ${searchResults?.current_page ===
+                              pages[pages?.length - 1] && "text-gray-300"
+                              }`}
                             onClick={() =>
                               setPage(searchResults?.current_page + 1)
                             }
@@ -551,8 +549,8 @@ const InviteFreelancer = ({ appliedUsers }) => {
                     {loading ? (
                       <ReviewProposalSkeleton />
                     ) : invitedFreelancers?.filter(
-                        (profile) => profile?.job_id === id
-                      )?.length ? (
+                      (profile) => profile?.job_id === id
+                    )?.length ? (
                       <VStack
                         divider={<StackDivider borderColor="gray.200" />}
                         spacing={4}
@@ -651,7 +649,7 @@ const InviteFreelancer = ({ appliedUsers }) => {
           <Button
             colorScheme="primary"
             width={"full"}
-            onClick={() => navigate("/setting/billing-payments")}
+            onClick={() => router.push("/setting/billing-payments")}
           >
             Verify Now
           </Button>

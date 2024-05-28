@@ -7,9 +7,9 @@ import {
 } from "react-icons/fa";
 import { addDays, format } from "date-fns";
 import { IoMdClose } from "react-icons/io";
-import { useNavigate, useParams, useLocation } from "react-router-dom";
+import { userouter, useParams, useLocation } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { MdNavigateBefore, MdNavigateNext } from "react-icons/md";
+import { MdrouterBefore, MdrouterNext } from "react-icons/md";
 // Import Swiper styles
 import "swiper/css";
 // import required modules
@@ -36,7 +36,8 @@ const ClientGigDetails = () => {
   const { socket } = useContext(SocketContext);
   const toast = useToast();
   const videoRef = useRef(null);
-  const navigate = useNavigate();
+  const router = useRouter();
+
   const { state } = useLocation();
   const status = state?.status || gigData?.gigInfo?.status;
   const { id } = useParams();
@@ -94,7 +95,7 @@ const ClientGigDetails = () => {
 
   // handle back button
   const handleBackward = () => {
-    navigate("/client-dashboard", { state: null });
+    router.push("/client-dashboard", { state: null });
   };
 
   useEffect(() => {
@@ -160,7 +161,7 @@ const ClientGigDetails = () => {
     setIsLoading(false);
     setIsModal(false);
     setMessage("");
-    navigate("/client-dashboard");
+    router.push("/client-dashboard");
   };
 
   // automatic render service option.
@@ -258,13 +259,13 @@ const ClientGigDetails = () => {
                             ref={prevRef}
                             className="absolute top-1/2 -left-4 z-20 bg-green-100 rounded-full shadow -mt-4"
                           >
-                            <MdNavigateBefore className="text-4xl" />
+                            <MdrouterBefore className="text-4xl" />
                           </button>
                           <button
                             ref={nextRef}
                             className="absolute top-1/2 -right-4 z-20 bg-green-100 rounded-full shadow -mt-4"
                           >
-                            <MdNavigateNext className="text-4xl" />
+                            <MdrouterNext className="text-4xl" />
                           </button>
                         </div>
                       </div>
@@ -330,7 +331,7 @@ const ClientGigDetails = () => {
                                 paddingX={10}
                                 className="tracking-wide capitalize"
                                 onClick={() =>
-                                  navigate("/setting/billing-payments")
+                                  router.push("/setting/billing-payments")
                                 }
                               >
                                 Verify Payment Method

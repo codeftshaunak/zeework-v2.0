@@ -15,7 +15,7 @@ import {
   TabPanels,
   Tabs,
 } from "@chakra-ui/react";
-import { useNavigate, useParams } from "react-router-dom";
+import { userouter, useParams } from "react-router-dom";
 import { IoMdClose } from "react-icons/io";
 import { FaLocationDot } from "react-icons/fa6";
 import ConfirmModal from "../ConfirmationModal/ConfirmModal";
@@ -59,7 +59,8 @@ const SingleContractDetails = () => {
     reset,
   } = useForm();
   const toast = useToast();
-  const navigate = useNavigate();
+  const router = useRouter();
+
 
   const getTaskDetail = async (offer_id) => {
     try {
@@ -238,7 +239,7 @@ const SingleContractDetails = () => {
             }
           );
         }
-        navigate("/my-stats");
+        router.push("/my-stats");
       }
     } catch (error) {
       console.error(error);
@@ -302,7 +303,7 @@ const SingleContractDetails = () => {
           );
         }
 
-        navigate("/my-stats");
+        router.push("/my-stats");
       }
     } catch (error) {
       console.error(error);
@@ -406,7 +407,7 @@ const SingleContractDetails = () => {
                           borderColor={"green.200"}
                           leftIcon={<LuMessagesSquare />}
                           onClick={() =>
-                            navigate(
+                            router(
                               `/message/${jobDetails.freelancer_id}?contract_ref=${jobDetails._id}`
                             )
                           }
@@ -440,7 +441,7 @@ const SingleContractDetails = () => {
                             colorScheme="primary"
                             variant={"outline"}
                             onClick={() =>
-                              navigate(`/submit-review/${jobDetails._id}`, {
+                              router(`/submit-review/${jobDetails._id}`, {
                                 state: {
                                   jobDetails: jobDetails,
                                   receiverDetails: freelancerDetails,

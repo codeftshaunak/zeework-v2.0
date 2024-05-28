@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import { VStack } from "@chakra-ui/react";
-import { Header, AuthHeader } from "../../components/Header";
+import { Header } from "../../components/Header/Header";
+import { AuthHeader } from "../../components/Header/Header";
 import { useSelector } from "react-redux";
 import Notifications from "../../Components/NotifyToast/Notifications";
 
@@ -11,7 +12,7 @@ const HomeLayout = (props) => {
   return (
     <VStack width={"full"} spacing={0} gap={props.gap ? props.gap : 0}>
       {token ? <AuthHeader role={role} /> : <Header />}
-      <Notifications />
+      {/* <Notifications /> */}
       <VStack
         width={props.width ? props.width : "85%"}
         gap={props.gap ? props.gap : "60px"}

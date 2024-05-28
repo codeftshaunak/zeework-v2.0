@@ -5,7 +5,7 @@ import {
   getSubCategory,
 } from "../../../helpers/APIs/freelancerApis";
 import { Box, Image, Text } from "@chakra-ui/react";
-import { MdNavigateBefore, MdNavigateNext } from "react-icons/md";
+import { MdrouterBefore, MdrouterNext } from "react-icons/md";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 // Import Swiper styles
@@ -132,13 +132,13 @@ const LeftSide = ({ details }) => {
                   ref={prevRef}
                   className="absolute top-1/2 -left-2 z-20 bg-green-100 rounded-full shadow -mt-4"
                 >
-                  <MdNavigateBefore className="text-3xl" />
+                  <MdrouterBefore className="text-3xl" />
                 </button>
                 <button
                   ref={nextRef}
                   className="absolute top-1/2 -right-2 z-20 bg-green-100 rounded-full shadow -mt-4"
                 >
-                  <MdNavigateNext className="text-3xl" />
+                  <MdrouterNext className="text-3xl" />
                 </button>
               </>
             )}

@@ -1,9 +1,10 @@
 /* eslint-disable react/no-children-prop */
-import { useNavigate } from "react-router-dom";
+import { useRouter } from 'next/router';
 import { CommonButton } from "../../Global/Buttons/Buttons";
 
 const DreamsInto = () => {
-  const navigate = useNavigate();
+  const router = useRouter();
+
   return (
     <section className="md:w-[85%] w-[90%] max-w-[1200px] mb-16 mx-[auto]" >
       <div className="w-full mx-[auto] h-[292px] rounded-xl relative bg-primary z-10 flex items-center px-16  max-[425px]:px-8">
@@ -19,7 +20,7 @@ const DreamsInto = () => {
             You can have the best people. Right now. Right here.
           </p>
           <div>
-            <CommonButton children={"Join us"} onClick={() => navigate("/signup")} />
+            <CommonButton children={"Join us"} onClick={() => router.push("/signup")} />
           </div>
         </div>
       </div>

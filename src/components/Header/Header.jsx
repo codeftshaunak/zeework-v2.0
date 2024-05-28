@@ -1,5 +1,4 @@
 import { Box, Avatar } from "@chakra-ui/react";
-import { Link, useLocation } from "react-router-dom";
 import CTAButton from "../CTAButton";
 import { RiArrowDropDownLine } from "react-icons/ri";
 import { BsSearch } from "react-icons/bs";
@@ -134,10 +133,10 @@ const Header = () => {
               <div className="flex-shrink-0">
                 <p
                   className="text-[22px] font-bold text-green-500 cursor-pointer text-right"
-                  onClick={() => navigate("/")}
+                  onClick={() => router.push("/")}
                 >
                   <img
-                    src="/images/zeework_logo.png"
+                    src="./images/zeework_logo.png"
                     style={{
                       width: "100px",
                       marginTop: "3px",
@@ -262,14 +261,14 @@ const Header = () => {
                 width={"210px"}
               >
                 <CTAButton
-                  onClick={() => navigate("/login")}
+                  onClick={() => router.push("/login")}
                   text={"Log In"}
                   fontSize="1rem"
                   height="2.5rem"
                   className="mr-2"
                 ></CTAButton>
                 <CTAButton
-                  onClick={() => navigate("/signup")}
+                  onClick={() => router.push("/signup")}
                   text={"Sign Up"}
                   bg={"#22C55E"}
                   color={"#ffff"}
@@ -309,13 +308,13 @@ const Header = () => {
                 width={"210px"}
               >
                 <CTAButton
-                  onClick={() => navigate("/login")}
+                  onClick={() => router.push("/login")}
                   text={"Log In"}
                   fontSize="1rem"
                   height="2.5rem"
                 ></CTAButton>
                 <CTAButton
-                  onClick={() => navigate("/signup")}
+                  onClick={() => router.push("/signup")}
                   text={"Sign Up"}
                   bg={"#22C55E"}
                   color={"#ffff"}
@@ -339,7 +338,8 @@ export const AuthHeader = ({ role }) => {
   const [notifications, setNotifications] = useState([]);
   const [cookie, setCookie] = useCookies(["activeagency"]);
   const [isSelectModal, setIsSelectModal] = useState(false);
-  const { pathname } = useLocation();
+  const router = useRouter();
+  const { pathname } = router;
   const isMessagePage = pathname.startsWith("/message");
   const activeAgency = cookie?.activeagency;
 
@@ -366,14 +366,14 @@ export const AuthHeader = ({ role }) => {
     dispatch(clearAuthData()); // Dispatch the clearAuthData action to reset the state
     dispatch(clearProfileData()); // Dispatch the clearAuthData action to reset the state
     dispatch(restorePagesState());
-    navigate("/login");
+    router.push("/login");
   };
 
   const handleUserProfile = () => {
-    navigate("/profile");
+    router.push("/profile");
   };
 
-  const navigate = useNavigate();
+
   const navigation = [
     { title: "Find Work", href: "/find-job" },
     { title: "My Jobs", href: "/my-jobs" },
@@ -406,9 +406,9 @@ export const AuthHeader = ({ role }) => {
     const searchTermEncoded = encodeURIComponent(searchTerm);
 
     if (selectedRole === "job") {
-      navigate(`/search-job?searchTerm=${searchTermEncoded}`);
+      router(`/search-job?searchTerm=${searchTermEncoded}`);
     } else if (selectedRole === "talent") {
-      navigate(`/search-freelancers?squery=${searchTermEncoded}`);
+      router(`/search-freelancers?squery=${searchTermEncoded}`);
     }
   };
 
@@ -513,7 +513,7 @@ export const AuthHeader = ({ role }) => {
             <div className="flex md:w-[130px] items-center">
               <p
                 className="text-[22px] font-bold text-green-500 cursor-pointer text-right mb-0 pb-0"
-                onClick={() => navigate("/")}
+                onClick={() => router.push("/")}
               >
                 <img
                   src="/images/zeework_logo.png"
@@ -665,7 +665,7 @@ export const AuthHeader = ({ role }) => {
                     <div
                       className="flex items-center w-full cursor-pointer mt-1 hover:bg-gray-200/20 py-1 px-2 rounded"
                       onClick={() => {
-                        navigate("/setting"), setOpenInfo(false);
+                        router.push("/setting"), setOpenInfo(false);
                       }}
                     >
                       <AiFillSetting />
@@ -675,7 +675,7 @@ export const AuthHeader = ({ role }) => {
                     <div
                       className="flex items-center w-full cursor-pointer my-1 hover:bg-gray-200/20 py-1 px-2 rounded"
                       onClick={() => {
-                        navigate("/help"), setOpenInfo(false);
+                        router.push("/help"), setOpenInfo(false);
                       }}
                     >
                       <BiHelpCircle />
@@ -810,7 +810,7 @@ export const AuthHeader = ({ role }) => {
                 <div
                   className="flex justify-start gap-4 items-center w-full cursor-pointer mt-1 hover:bg-gray-200/20 py-1 px-2 rounded"
                   onClick={() => {
-                    navigate("/setting"), setOpenInfo(false);
+                    router.push("/setting"), setOpenInfo(false);
                   }}
                 >
                   <AiFillSetting />
@@ -819,7 +819,7 @@ export const AuthHeader = ({ role }) => {
                 <div
                   className="flex justify-start gap-4 items-center w-full cursor-pointer my-1 hover:bg-gray-200/20 py-1 px-2 rounded"
                   onClick={() => {
-                    navigate("/help"), setOpenInfo(false);
+                    router.push("/help"), setOpenInfo(false);
                   }}
                 >
                   <BiHelpCircle />
@@ -904,7 +904,7 @@ export const AuthHeader = ({ role }) => {
                       <div
                         className="flex justify-start gap-4 items-center w-full cursor-pointer mt-1 hover:bg-gray-200/20 py-1 px-2 rounded"
                         onClick={() => {
-                          navigate("/setting"), setOpenInfo(false);
+                          router.push("/setting"), setOpenInfo(false);
                         }}
                       >
                         <AiFillSetting />
@@ -942,36 +942,5 @@ export const AuthHeader = ({ role }) => {
     </nav>
   );
 };
-
-// const NavItem = ({ title, noIcon, url, onClick, isNotification }) => {
-//   const location = useLocation();
-//   const isActive = location.pathname === url;
-//   const handleClick = () => {
-//     if (onClick) {
-//       onClick();
-//     }
-//   };
-
-//   return (
-//     <Link to={url} onClick={handleClick}>
-//       <div
-//         className={`cursor-pointer flex items-center gap-1 ${isActive ? "text-[var(--primarycolor)]" : "text-[#374151]"
-//           }`}
-//       >
-//         <p
-//           className={`sm:text-xs md:text-[16px] font-[500] ${isNotification && "text-red-500"
-//             }`}
-//         >
-//           {title}
-//         </p>
-//         {isNotification > 0 && (
-//           <p className="bg-red-500 text-white w-5 h-5 rounded-full flex items-center justify-center font-medium text-sm">
-//             {isNotification > 9 ? "9+" : isNotification}
-//           </p>
-//         )}
-//       </div>
-//     </Link>
-//   );
-// };
 
 export default Header;

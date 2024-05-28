@@ -8,10 +8,10 @@ import {
 import { addDays, format } from "date-fns";
 import { IoMdClose } from "react-icons/io";
 import HomeLayout from "../../../Layouts/HomeLayout";
-import { useNavigate, useParams } from "react-router-dom";
+import { userouter, useParams } from "react-router-dom";
 import { getGigDetails } from "../../../helpers/APIs/gigApis";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { MdNavigateBefore, MdNavigateNext } from "react-icons/md";
+import { MdrouterBefore, MdrouterNext } from "react-icons/md";
 // Import Swiper styles
 import "swiper/css";
 // import required modules
@@ -24,7 +24,8 @@ const GigDetails = () => {
   const [isFullImg, setIsFullImg] = useState("");
   const [isPlaying, setIsPlaying] = useState(false);
   const videoRef = useRef(null);
-  const navigate = useNavigate();
+  const router = useRouter();
+
   const { id } = useParams();
   const prevRef = useRef(null);
   const nextRef = useRef(null);
@@ -63,12 +64,12 @@ const GigDetails = () => {
 
   // handle back button
   const handleBackward = () => {
-    navigate(-1);
+    router(-1);
   };
 
   // handle edit button
   const handleGigEdit = () => {
-    navigate(`/freelancer/gig/edit/${id}`);
+    router(`/freelancer/gig/edit/${id}`);
   };
 
   useEffect(() => {
@@ -191,13 +192,13 @@ const GigDetails = () => {
                             ref={prevRef}
                             className="absolute top-1/2 -left-4 z-20 bg-green-100 rounded-full shadow -mt-4"
                           >
-                            <MdNavigateBefore className="text-4xl" />
+                            <MdrouterBefore className="text-4xl" />
                           </button>
                           <button
                             ref={nextRef}
                             className="absolute top-1/2 -right-4 z-20 bg-green-100 rounded-full shadow -mt-4"
                           >
-                            <MdNavigateNext className="text-4xl" />
+                            <MdrouterNext className="text-4xl" />
                           </button>
                         </div>
                       </div>

@@ -2,13 +2,14 @@ import { useContext } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useCookies } from "react-cookie";
 import { Avatar } from "@chakra-ui/react";
-import { useNavigate } from "react-router-dom";
+import { useRouter } from 'next/router';
 import { CurrentUserContext } from "../../Contexts/CurrentUser";
 import UserCardSkeleton from "../Skeletons/UserCardSkeleton";
 import { restorePagesState } from "../../redux/pagesSlice/pagesSlice";
 
 const UserProfileCard = () => {
-  const navigate = useNavigate();
+  const router = useRouter();
+
   const [cookies, setCookie] = useCookies(["activeagency"]);
   const { hasAgency, activeAgency, userAgencyLoading } =
     useContext(CurrentUserContext);
@@ -22,7 +23,7 @@ const UserProfileCard = () => {
       setCookie("activeagency", false);
       dispatch(restorePagesState());
     } else {
-      navigate(`/profile`);
+      router(`/profile`);
     }
   };
   return (
@@ -40,13 +41,13 @@ const UserProfileCard = () => {
                 name={firstName + " " + lastName}
                 className={`h-[90px!important] w-[90px!important] object-cover border-2 ${!activeAgency && "cursor-pointer"
                   }`}
-                onClick={() => !activeAgency && navigate(`/profile`)}
+                onClick={() => !activeAgency && router(`/profile`)}
               />
             </div>
             <div
               className={`text-2xl text-[#072C15] font-medium capitalize ${!activeAgency && "cursor-pointer"
                 }`}
-              onClick={() => !activeAgency && navigate(`/profile`)}
+              onClick={() => !activeAgency && router(`/profile`)}
             >
               {firstName + " " + lastName?.slice(0, 1) + "."}
             </div>

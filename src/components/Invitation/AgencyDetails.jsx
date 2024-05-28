@@ -13,7 +13,7 @@ import {
   getInvitationOfAgency,
 } from "../../helpers/APIs/freelancerApis";
 import BtnSpinner from "../Skeletons/BtnSpinner";
-import { useNavigate } from "react-router-dom";
+import { useRouter } from 'next/router';
 import { FaClock, FaLocationDot } from "react-icons/fa6";
 import { IoBagCheck, IoCalendar } from "react-icons/io5";
 import { BsTranslate } from "react-icons/bs";
@@ -27,7 +27,8 @@ const AgencyDetails = () => {
   const currentUrl = window.location.href;
   const toast = useToast();
   const { invite_id } = queryString.parseUrl(currentUrl).query;
-  const navigate = useNavigate();
+  const router = useRouter();
+
   const [isLoading, setIsLoading] = useState(true);
 
   const {
@@ -70,7 +71,7 @@ const AgencyDetails = () => {
           status: "success",
           position: "top-right",
         });
-        navigate("/");
+        router.push("/");
       } else {
         toast({
           title: msg,
@@ -106,7 +107,7 @@ const AgencyDetails = () => {
           status: "success",
           position: "top-right",
         });
-        navigate("/");
+        router.push("/");
       } else {
         toast({
           title: msg,
@@ -148,7 +149,7 @@ const AgencyDetails = () => {
           >
             <p
               className="text-green-500 font-semibold border-b border-transparent hover:border-green-500 border-spacing-0 transition cursor-pointer"
-              onClick={() => navigate(`/agency/${agency_id}`)}
+              onClick={() => router(`/agency/${agency_id}`)}
             >
               View Profile
             </p>

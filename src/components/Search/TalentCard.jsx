@@ -1,5 +1,5 @@
 import { AiFillQuestionCircle } from "react-icons/ai";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, userouter } from "react-router-dom";
 import {
   Avatar,
   Button,
@@ -35,7 +35,8 @@ const TalentCard = ({ freelancerData, loading }) => {
     agencyMembers?.map((item) => item.freelancer_id) || [];
 
   const toast = useToast();
-  const navigate = useNavigate();
+  const router = useRouter();
+
   const [formData, setFormData] = useState({
     agency_profile: hasAgency,
     freelancer_id: selectedFreelancer?.user_id,
@@ -200,132 +201,132 @@ const TalentCard = ({ freelancerData, loading }) => {
       >
         {loading
           ? [1, 2, 3].map((item) => (
-              <Box key={item} paddingY={7}>
-                <SkeletonText
-                  noOfLines={4}
-                  spacing="4"
-                  skeletonHeight="2"
-                  startColor="gray.100"
-                  endColor="gray.300"
-                />
-              </Box>
-            ))
+            <Box key={item} paddingY={7}>
+              <SkeletonText
+                noOfLines={4}
+                spacing="4"
+                skeletonHeight="2"
+                startColor="gray.100"
+                endColor="gray.300"
+              />
+            </Box>
+          ))
           : freelancerData?.map((freelancer) => {
-              const isHired = agencyMembersId?.find(
-                (id) => id === freelancer?.user_id
-              );
-              return (
-                <div
-                  key={freelancer?._id}
-                  className="flex gap-8 items-center py-7 w-full max-md:gap-2"
-                >
-                  <Avatar
-                    src={freelancer?.profile_image}
-                    name={freelancer?.firstName + " " + freelancer?.lastName}
-                    width={"80px"}
-                    height={"80px"}
-                    borderRadius={"50%"}
-                    fontSize={"3rem"}
-                    objectFit={"cover"}
-                    className="max-md:!hidden cursor-pointer"
-                    onClick={() =>
-                      navigate(`/freelancer/${freelancer?.user_id}`)
-                    }
-                  />
+            const isHired = agencyMembersId?.find(
+              (id) => id === freelancer?.user_id
+            );
+            return (
+              <div
+                key={freelancer?._id}
+                className="flex gap-8 items-center py-7 w-full max-md:gap-2"
+              >
+                <Avatar
+                  src={freelancer?.profile_image}
+                  name={freelancer?.firstName + " " + freelancer?.lastName}
+                  width={"80px"}
+                  height={"80px"}
+                  borderRadius={"50%"}
+                  fontSize={"3rem"}
+                  objectFit={"cover"}
+                  className="max-md:!hidden cursor-pointer"
+                  onClick={() =>
+                    router(`/freelancer/${freelancer?.user_id}`)
+                  }
+                />
 
-                  <div className="w-full space-y-2 ">
-                    <div className="flex justify-between items-center max-md:flex-col max-md:gap-4">
-                      <div className="flex gap-3">
-                        <div>
-                          <HStack className="max-[480px]:!flex-col !items-center">
-                            <div className="flex gap-2 items-center">
-                              <Avatar
-                                src={freelancer?.profile_image}
-                                name={
-                                  freelancer?.firstName +
-                                  " " +
-                                  freelancer?.lastName
-                                }
-                                width={"40px"}
-                                height={"40px"}
-                                borderRadius={"50%"}
-                                fontSize={"3rem"}
-                                objectFit={"cover"}
-                                className="md:!hidden cursor-pointer"
-                                onClick={() =>
-                                  navigate(`/freelancer/${freelancer?.user_id}`)
-                                }
-                              />
-                              <h2
-                                className="text-xl font-semibold text-fg-brand cursor-pointer"
-                                onClick={() =>
-                                  navigate(`/freelancer/${freelancer?.user_id}`)
-                                }
-                              >
-                                {freelancer?.firstName} {freelancer?.lastName}
-                              </h2>
-                            </div>
-                            <Button
-                              colorScheme="#22C35E"
-                              variant="outline"
-                              size={"xs"}
-                              color={"#22C35E"}
-                              marginLeft={"0.8rem"}
-                              height={"18px"}
-                              className="max-[480px]:!w-[60%] max-[360px]:!w-[80%]"
+                <div className="w-full space-y-2 ">
+                  <div className="flex justify-between items-center max-md:flex-col max-md:gap-4">
+                    <div className="flex gap-3">
+                      <div>
+                        <HStack className="max-[480px]:!flex-col !items-center">
+                          <div className="flex gap-2 items-center">
+                            <Avatar
+                              src={freelancer?.profile_image}
+                              name={
+                                freelancer?.firstName +
+                                " " +
+                                freelancer?.lastName
+                              }
+                              width={"40px"}
+                              height={"40px"}
+                              borderRadius={"50%"}
+                              fontSize={"3rem"}
+                              objectFit={"cover"}
+                              className="md:!hidden cursor-pointer"
+                              onClick={() =>
+                                router(`/freelancer/${freelancer?.user_id}`)
+                              }
+                            />
+                            <h2
+                              className="text-xl font-semibold text-fg-brand cursor-pointer"
+                              onClick={() =>
+                                router(`/freelancer/${freelancer?.user_id}`)
+                              }
                             >
-                              Available now
-                            </Button>
-                          </HStack>
-                          <div className="flex flex-col max-md:flex-row max-md:gap-2">
-                            <p className="font-medium text-[#6B7280] max-sm:font-normal">
-                              {freelancer?.professional_role}
-                            </p>
-
-                            <p className="font-medium text-[#6B7280] max-sm:font-normal">
-                              ${freelancer?.hourly_rate}/hr
-                            </p>
+                              {freelancer?.firstName} {freelancer?.lastName}
+                            </h2>
                           </div>
+                          <Button
+                            colorScheme="#22C35E"
+                            variant="outline"
+                            size={"xs"}
+                            color={"#22C35E"}
+                            marginLeft={"0.8rem"}
+                            height={"18px"}
+                            className="max-[480px]:!w-[60%] max-[360px]:!w-[80%]"
+                          >
+                            Available now
+                          </Button>
+                        </HStack>
+                        <div className="flex flex-col max-md:flex-row max-md:gap-2">
+                          <p className="font-medium text-[#6B7280] max-sm:font-normal">
+                            {freelancer?.professional_role}
+                          </p>
+
+                          <p className="font-medium text-[#6B7280] max-sm:font-normal">
+                            ${freelancer?.hourly_rate}/hr
+                          </p>
                         </div>
                       </div>
-                      {/* Navigation */}
-                      <div className="max-md:!w-full">
-                        <Stack
-                          direction="row"
-                          spacing={4}
-                          className="max-md:!w-full justify-center"
-                        >
-                          {hasAgency && activeAgency ? (
+                    </div>
+                    {/* Navigation */}
+                    <div className="max-md:!w-full">
+                      <Stack
+                        direction="row"
+                        spacing={4}
+                        className="max-md:!w-full justify-center"
+                      >
+                        {hasAgency && activeAgency ? (
+                          <Button
+                            size="md"
+                            colorScheme="primary"
+                            variant="outline"
+                            onClick={() => handleSelectChange(freelancer)}
+                            isDisabled={isHired}
+                          >
+                            {isHired ? "Already Hired" : "Invite To Agency"}
+                          </Button>
+                        ) : (
+                          <Link
+                            to={`/freelancer/${freelancer?.user_id}`}
+                            className="max-md:!w-[70%] max-[480px]:!w-full"
+                          >
                             <Button
                               size="md"
-                              colorScheme="primary"
+                              colorScheme="#22C35E"
                               variant="outline"
-                              onClick={() => handleSelectChange(freelancer)}
-                              isDisabled={isHired}
+                              color={"#22C35E"}
+                              className="max-md:!w-full"
                             >
-                              {isHired ? "Already Hired" : "Invite To Agency"}
+                              View Profile
                             </Button>
-                          ) : (
-                            <Link
-                              to={`/freelancer/${freelancer?.user_id}`}
-                              className="max-md:!w-[70%] max-[480px]:!w-full"
-                            >
-                              <Button
-                                size="md"
-                                colorScheme="#22C35E"
-                                variant="outline"
-                                color={"#22C35E"}
-                                className="max-md:!w-full"
-                              >
-                                View Profile
-                              </Button>
-                            </Link>
-                          )}
-                        </Stack>
-                      </div>
+                          </Link>
+                        )}
+                      </Stack>
                     </div>
+                  </div>
 
-                    {/* <div>
+                  {/* <div>
                   <p className="text-sm font-medium text-[#6B7280]">
                     ${freelancer?.hourly_rate}/hr
                   </p>
@@ -347,10 +348,10 @@ const TalentCard = ({ freelancerData, loading }) => {
                     </span>
                   </Link>
                 </div> */}
-                  </div>
                 </div>
-              );
-            })}
+              </div>
+            );
+          })}
       </VStack>
 
       {selectedFreelancer && isOpenModal && (
@@ -437,16 +438,8 @@ const TalentCard = ({ freelancerData, loading }) => {
                         {selectedFreelancer?.skills
                           ? selectedFreelancer.skills?.length > 6
                             ? selectedFreelancer.skills
-                                .slice(0, 6)
-                                .map((skill, index) => (
-                                  <h4
-                                    key={index}
-                                    className="text-sm border mr-[5px] bg-[#5d8586] px-3 py-1 text-white rounded-2xl cursor-pointer"
-                                  >
-                                    {skill}
-                                  </h4>
-                                ))
-                            : selectedFreelancer.skills.map((skill, index) => (
+                              .slice(0, 6)
+                              .map((skill, index) => (
                                 <h4
                                   key={index}
                                   className="text-sm border mr-[5px] bg-[#5d8586] px-3 py-1 text-white rounded-2xl cursor-pointer"
@@ -454,6 +447,14 @@ const TalentCard = ({ freelancerData, loading }) => {
                                   {skill}
                                 </h4>
                               ))
+                            : selectedFreelancer.skills.map((skill, index) => (
+                              <h4
+                                key={index}
+                                className="text-sm border mr-[5px] bg-[#5d8586] px-3 py-1 text-white rounded-2xl cursor-pointer"
+                              >
+                                {skill}
+                              </h4>
+                            ))
                           : null}
                       </div>
                     </div>

@@ -2,14 +2,15 @@ import { BsInfoCircle } from "react-icons/bs";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import { IoMdClose } from "react-icons/io";
-import { useNavigate } from "react-router-dom";
+import { useRouter } from 'next/router';
 
 const CardVerificationNotify = () => {
   const role = useSelector((state) => state.auth.role);
   const [paymentStatus, setPaymentStatus] = useState(
     sessionStorage.getItem("paymentNotify")
   );
-  const navigate = useNavigate();
+  const router = useRouter();
+
 
   const handleToastClose = () => {
     setPaymentStatus("true");
@@ -26,7 +27,7 @@ const CardVerificationNotify = () => {
               Don&apos;t forget to complete your profile with payment details
               and start your first hire!{" "}
               <span
-                onClick={() => navigate("/setting/billing-payments")}
+                onClick={() => router.push("/setting/billing-payments")}
                 className="cursor-pointer underline underline-offset-2 hover:no-underline transition font-bold text-[var(--primarycolor)]"
               >
                 Click to Update Here

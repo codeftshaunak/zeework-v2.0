@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { getFreelancerGigs } from "../../../helpers/APIs/gigApis";
-import { useNavigate } from "react-router-dom";
+import { useRouter } from 'next/router';
 import { Swiper, SwiperSlide } from "swiper/react";
 import { IoArrowBack, IoArrowForwardSharp } from "react-icons/io5";
 
@@ -71,11 +71,12 @@ export const ProfileGigCards = () => {
 };
 
 export const ProfileGigCard = ({ gig }) => {
-  const navigate = useNavigate();
+  const router = useRouter();
+
   const { title, pricing, images } = gig;
 
   const handleDetails = () => {
-    navigate(`/freelancer/gig/details/${gig._id}`);
+    router(`/freelancer/gig/details/${gig._id}`);
   };
 
   return (

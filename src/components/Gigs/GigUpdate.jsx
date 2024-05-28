@@ -11,7 +11,7 @@ import {
   uploadImages,
   uploadMedia,
 } from "../../helpers/APIs/gigApis";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { useLocation, userouter, useParams } from "react-router-dom";
 import {
   getCategories,
   getSubCategory,
@@ -25,7 +25,8 @@ export const GigUpdate = ({ activeStep, goForward, goBackward, setIsEdit }) => {
   const toast = useToast();
   const location = useLocation();
   const path = location.pathname;
-  const navigate = useNavigate();
+  const router = useRouter();
+
   const { id } = useParams();
 
   // update form data with previous data
@@ -194,7 +195,7 @@ export const GigUpdate = ({ activeStep, goForward, goBackward, setIsEdit }) => {
           colorScheme: "green",
           position: "top-right",
         });
-        navigate(-1);
+        router(-1);
         setIsEdit(false);
       }
     } catch (error) {
@@ -204,7 +205,7 @@ export const GigUpdate = ({ activeStep, goForward, goBackward, setIsEdit }) => {
   };
 
   const firstPageGoBackward = () => {
-    navigate(-1);
+    router(-1);
   };
 
   return (
@@ -262,8 +263,8 @@ export const GigUpdate = ({ activeStep, goForward, goBackward, setIsEdit }) => {
 export const GigCreateLayout = ({
   children,
   title,
-  onBackward = () => {},
-  onForward = () => {},
+  onBackward = () => { },
+  onForward = () => { },
   backwardBtnText = "Back",
   forwardBtnText = "Save & Continue",
   isLoading,

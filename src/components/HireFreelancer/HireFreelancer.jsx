@@ -4,7 +4,7 @@ import FreelancerProfile from "./FreelancerProfile";
 import JobDetails from "./JobDetails";
 import { sendHireFreelancer } from "../../helpers/APIs/clientApis";
 import { useToast, Checkbox } from "@chakra-ui/react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, userouter } from "react-router-dom";
 import BtnSpinner from "../Skeletons/BtnSpinner";
 import { SocketContext } from "../../Contexts/SocketContext";
 
@@ -30,7 +30,8 @@ const HireFreelancerPage = () => {
     accept_terms_condition: isChecked,
   });
   const toast = useToast();
-  const navigate = useNavigate();
+  const router = useRouter();
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -71,7 +72,7 @@ const HireFreelancerPage = () => {
           status: code === 200 ? "success" : "warning",
           position: "top-right",
         });
-        navigate("/client-dashboard");
+        router.push("/client-dashboard");
       }
     } catch (error) {
       console.log(error);
@@ -91,8 +92,8 @@ const HireFreelancerPage = () => {
   };
 
   useEffect(() => {
-    if (!location.state?.freelancerInfo) navigate("/client-dashboard");
-  }, [location.state?.freelancerInfo, navigate]);
+    if (!location.state?.freelancerInfo) router.push("/client-dashboard");
+  }, [location.state?.freelancerInfo, router]);
 
   return (
     <section className="w-[80%]">
@@ -116,14 +117,13 @@ const HireFreelancerPage = () => {
           <div className="font-semibold text-right flex items-center justify-end gap-10 mt-10">
             <div
               className="text-green-500 cursor-pointer"
-              onClick={() => navigate(-1)}
+              onClick={() => router(-1)}
             >
               Cancel
             </div>
             <button
-              className={`py-2 px-5 text-white cursor-pointer rounded-full bg-green-500 w-fit flex items-center ${
-                (!isChecked || isContinue) && "opacity-50 cursor-not-allowed"
-              }`}
+              className={`py-2 px-5 text-white cursor-pointer rounded-full bg-green-500 w-fit flex items-center ${(!isChecked || isContinue) && "opacity-50 cursor-not-allowed"
+                }`}
               disabled={!isChecked || isContinue}
             >
               {isContinue && <BtnSpinner />}

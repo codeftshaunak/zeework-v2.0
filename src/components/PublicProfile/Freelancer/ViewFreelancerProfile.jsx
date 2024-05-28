@@ -13,7 +13,7 @@ import "swiper/css/pagination";
 import HomeLayout from "../../../Layouts/HomeLayout";
 import { FaLocationDot } from "react-icons/fa6";
 import AgencyProfileSkeleton from "../../Skeletons/AgencyProfileSkeleton";
-import { useNavigate } from "react-router-dom";
+import { useRouter } from 'next/router';
 import PortfolioCard from "./PortfolioCard";
 import { useSelector } from "react-redux";
 import { getFreelancerById } from "../../../helpers/APIs/freelancerApis";
@@ -23,7 +23,8 @@ const ViewFreelancerProfile = () => {
   const role = useSelector((state) => state.auth.role);
   const [freelancerDetails, setFreelancerDetails] = useState({});
   const [isLoading, setIsLoading] = useState(true);
-  const navigate = useNavigate();
+  const router = useRouter();
+
   const toast = useToast();
   const [showDetails, setShowDetails] = useState(false);
 
@@ -63,7 +64,7 @@ const ViewFreelancerProfile = () => {
   const handleHire = async () => {
     if (!freelancerDetails) return;
 
-    navigate(`/client/hire/${user_id}`, {
+    router(`/client/hire/${user_id}`, {
       state: {
         freelancerInfo: {
           firstName,

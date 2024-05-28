@@ -1,12 +1,13 @@
 import LinkArrowIcon from "../../assets/icons/link-arrow";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, userouter } from "react-router-dom";
 import { Image, HStack } from "@chakra-ui/react";
 import { FaFacebookF, FaInstagram } from "react-icons/fa";
 import { FaTwitter } from "react-icons/fa6";
 import { FaLinkedinIn } from "react-icons/fa6";
 
 export const HomeFooter = () => {
-  const navigate = useNavigate();
+  const router = useRouter();
+
   return (
     <div>
       <div className="bg-green-50 mt-20 py-[2.62rem]">
@@ -26,7 +27,7 @@ export const HomeFooter = () => {
                 <div className="w-[310px] justify-between items-start inline-flex">
                   <div
                     className="text-gray-700 text-lg font-normal font-['Lato'] cursor-pointer"
-                    onClick={() => navigate("/")}
+                    onClick={() => router.push("/")}
                   >
                     Home
                   </div>
@@ -37,7 +38,7 @@ export const HomeFooter = () => {
                 <div className="w-[310px] justify-between items-start inline-flex">
                   <div
                     className="text-gray-700 text-lg font-normal font-['Lato'] cursor-pointer"
-                    onClick={() => navigate()}
+                    onClick={() => router()}
                   >
                     About
                   </div>
@@ -48,7 +49,7 @@ export const HomeFooter = () => {
                 <div className="w-[310px] justify-between items-center inline-flex">
                   <div
                     className="text-gray-700 text-lg font-normal font-['Lato'] cursor-pointer"
-                    onClick={() => navigate()}
+                    onClick={() => router()}
                   >
                     Contact Us
                   </div>
@@ -59,7 +60,7 @@ export const HomeFooter = () => {
                 <div className="w-[310px] justify-between items-center inline-flex">
                   <div
                     className="text-gray-700 text-lg font-normal font-['Lato'] cursor-pointer"
-                    onClick={() => navigate()}
+                    onClick={() => router()}
                   >
                     About
                   </div>
@@ -72,7 +73,7 @@ export const HomeFooter = () => {
                 <div className="w-[310px] justify-between items-start inline-flex">
                   <div
                     className="text-gray-700 text-lg font-normal font-['Lato'] cursor-pointer"
-                    onClick={() => navigate()}
+                    onClick={() => router()}
                   >
                     Casestudies
                   </div>
@@ -83,7 +84,7 @@ export const HomeFooter = () => {
                 <div className="w-[310px] justify-between items-start inline-flex">
                   <div
                     className="text-gray-700 text-lg font-normal font-['Lato'] cursor-pointer"
-                    onClick={() => navigate()}
+                    onClick={() => router()}
                   >
                     Blogs
                   </div>
@@ -94,7 +95,7 @@ export const HomeFooter = () => {
                 <div className="w-[310px] justify-between items-start inline-flex">
                   <div
                     className="text-gray-700 text-lg font-normal font-['Lato'] cursor-pointer"
-                    onClick={() => navigate()}
+                    onClick={() => router()}
                   >
                     Events
                   </div>
@@ -105,7 +106,7 @@ export const HomeFooter = () => {
                 <div className="w-[310px] justify-between items-start inline-flex">
                   <div
                     className="text-gray-700 text-lg font-normal font-['Lato'] cursor-pointer"
-                    onClick={() => navigate()}
+                    onClick={() => router()}
                   >
                     Community
                   </div>
@@ -118,7 +119,7 @@ export const HomeFooter = () => {
                 <div className="w-[310px] justify-between items-center inline-flex">
                   <div
                     className="text-gray-700 text-lg font-normal font-['Lato'] cursor-pointer"
-                    onClick={() => navigate()}
+                    onClick={() => router()}
                   >
                     One Pager
                   </div>
@@ -129,7 +130,7 @@ export const HomeFooter = () => {
                 <div className="w-[310px] justify-between items-center inline-flex">
                   <div
                     className="text-gray-700 text-lg font-normal font-['Lato'] cursor-pointer"
-                    onClick={() => navigate()}
+                    onClick={() => router()}
                   >
                     Multi Pager
                   </div>
@@ -140,7 +141,7 @@ export const HomeFooter = () => {
                 <div className="w-[310px] justify-between items-center inline-flex">
                   <div
                     className="text-gray-700 text-lg font-normal font-['Lato'] cursor-pointer"
-                    onClick={() => navigate()}
+                    onClick={() => router()}
                   >
                     E-commerce Pages
                   </div>
@@ -151,7 +152,7 @@ export const HomeFooter = () => {
                 <div className="w-[310px] justify-between items-center inline-flex">
                   <div
                     className="text-gray-700 text-lg font-normal font-['Lato'] cursor-pointer"
-                    onClick={() => navigate()}
+                    onClick={() => router()}
                   >
                     Dynamic Content Pages
                   </div>
@@ -164,7 +165,7 @@ export const HomeFooter = () => {
                 <div className="w-[310px] justify-between items-start inline-flex">
                   <div
                     className="text-gray-700 text-lg font-normal font-['Lato'] cursor-pointer"
-                    onClick={() => navigate()}
+                    onClick={() => router()}
                   >
                     Privacy
                   </div>
@@ -175,7 +176,7 @@ export const HomeFooter = () => {
                 <div className="w-[310px] justify-between items-start inline-flex">
                   <div
                     className="text-gray-700 text-lg font-normal font-['Lato'] cursor-pointer"
-                    onClick={() => navigate()}
+                    onClick={() => router()}
                   >
                     Terms & Conditions
                   </div>
@@ -186,7 +187,7 @@ export const HomeFooter = () => {
                 <div className="w-[310px] justify-between items-center inline-flex">
                   <div
                     className="text-gray-700 text-lg font-normal font-['Lato'] cursor-pointer"
-                    onClick={() => navigate()}
+                    onClick={() => router()}
                   >
                     Leadership
                   </div>
@@ -197,7 +198,7 @@ export const HomeFooter = () => {
                 <div className="w-[310px] justify-between items-center inline-flex">
                   <div
                     className="text-gray-700 text-lg font-normal font-['Lato'] cursor-pointer"
-                    onClick={() => navigate()}
+                    onClick={() => router()}
                   >
                     Team
                   </div>
@@ -223,7 +224,8 @@ export const HomeFooter = () => {
 };
 
 export const MVPFooter = () => {
-  const navigate = useNavigate();
+  const router = useRouter();
+
   return (
     <div>
       <div className="bg-green-50 py-[2.62rem]">
@@ -236,7 +238,7 @@ export const MVPFooter = () => {
                 <div className="justify-between items-center inline-flex">
                   <div
                     className="text-gray-700 text-lg f cursor-pointer"
-                    onClick={() => navigate()}
+                    onClick={() => router()}
                   >
                     About Us
                   </div>
@@ -245,7 +247,7 @@ export const MVPFooter = () => {
                 <div className="justify-between items-start inline-flex">
                   <div
                     className="text-gray-700 text-lg  cursor-pointer"
-                    onClick={() => navigate("/")}
+                    onClick={() => router.push("/")}
                   >
                     Facebook
                   </div>
@@ -254,7 +256,7 @@ export const MVPFooter = () => {
                 <div className="justify-between items-start inline-flex">
                   <div
                     className="text-gray-700 text-lg  cursor-pointer"
-                    onClick={() => navigate("/")}
+                    onClick={() => router.push("/")}
                   >
                     Facebook
                   </div>
@@ -263,7 +265,7 @@ export const MVPFooter = () => {
                 <div className="justify-between items-center inline-flex">
                   <div
                     className="text-gray-700 text-lg  cursor-pointer"
-                    onClick={() => navigate()}
+                    onClick={() => router()}
                   >
                     Contact Us
                   </div>
@@ -272,7 +274,7 @@ export const MVPFooter = () => {
                 <div className="justify-between items-center inline-flex">
                   <div
                     className="text-gray-700 text-lg  cursor-pointer"
-                    onClick={() => navigate()}
+                    onClick={() => router()}
                   >
                     Privacy Policy
                   </div>
@@ -281,7 +283,7 @@ export const MVPFooter = () => {
                 <div className="justify-between items-center inline-flex">
                   <div
                     className="text-gray-700 text-lg  cursor-pointer"
-                    onClick={() => navigate()}
+                    onClick={() => router()}
                   >
                     Terms of Service
                   </div>

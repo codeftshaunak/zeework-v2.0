@@ -14,7 +14,7 @@ import {
   Avatar,
   StackDivider,
 } from "@chakra-ui/react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, userouter } from "react-router-dom";
 import { useContext, useState } from "react";
 import UniversalModal from "../Modals/UniversalModal";
 import { getAgencyById } from "../../helpers/APIs/agencyApis";
@@ -38,7 +38,8 @@ export const ReviewProposal = ({ proposals, isProposalsLoading }) => {
   const [hireProfile, setHireProfile] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
-  const navigate = useNavigate();
+  const router = useRouter();
+
   const {
     register,
     handleSubmit,
@@ -69,7 +70,7 @@ export const ReviewProposal = ({ proposals, isProposalsLoading }) => {
           _id,
         } = body;
 
-        navigate(`/client/hire/${user_id}`, {
+        router(`/client/hire/${user_id}`, {
           state: {
             freelancerInfo: {
               firstName,
@@ -167,8 +168,8 @@ export const ReviewProposal = ({ proposals, isProposalsLoading }) => {
                                     details?.agency_name
                                       ? details.agency_name
                                       : details?.firstName +
-                                        " " +
-                                        details?.lastName
+                                      " " +
+                                      details?.lastName
                                   }
                                   src={
                                     details?.profile_image
@@ -176,7 +177,7 @@ export const ReviewProposal = ({ proposals, isProposalsLoading }) => {
                                       : details?.agency_profileImage
                                   }
                                   onClick={() =>
-                                    navigate(
+                                    router(
                                       item.applied_by === "agency_member"
                                         ? `/agency/${item?.user_id}`
                                         : `/freelancer/${item?.user_id}`
@@ -190,7 +191,7 @@ export const ReviewProposal = ({ proposals, isProposalsLoading }) => {
                                       className="font-semibold text-primary w-fit border-b border-transparent border-spacing-0 hover:border-primary"
                                       cursor={"pointer"}
                                       onClick={() =>
-                                        navigate(
+                                        router(
                                           item?.applied_by === "agency_member"
                                             ? `/agency/${item?.user_id}`
                                             : `/freelancer/${item?.user_id}`
@@ -200,8 +201,8 @@ export const ReviewProposal = ({ proposals, isProposalsLoading }) => {
                                       {details?.agency_name
                                         ? details.agency_name
                                         : details?.firstName +
-                                          " " +
-                                          details?.lastName}
+                                        " " +
+                                        details?.lastName}
                                     </Text>
                                     <Text className="text-sm font-medium text-[#6B7280]">
                                       {details?.agency_name
@@ -261,7 +262,7 @@ export const ReviewProposal = ({ proposals, isProposalsLoading }) => {
                                     {details?.location
                                       ? details?.location
                                       : details?.agency_officeLocation
-                                          ?.country || "Not Found"}
+                                        ?.country || "Not Found"}
                                   </Text>
                                 </Box>
                               </Box>
@@ -412,7 +413,7 @@ export const ReviewProposal = ({ proposals, isProposalsLoading }) => {
           <Button
             colorScheme="primary"
             width={"full"}
-            onClick={() => navigate("/setting/billing-payments")}
+            onClick={() => router.push("/setting/billing-payments")}
           >
             Verify Now
           </Button>

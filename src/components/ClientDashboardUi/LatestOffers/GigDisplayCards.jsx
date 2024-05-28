@@ -8,19 +8,20 @@ import "swiper/css";
 import { Navigation } from "swiper/modules";
 
 import { useRef } from "react";
-import { useNavigate } from "react-router-dom";
+import { useRouter } from 'next/router';
 import HorizontalCardSkeleton from "../../Skeletons/HorizontalCardSkeleton";
 
 export const GigCard = ({ data, isPurchaseReq, tabIndex }) => {
   const { title, images, pricing, _id, status, user_details } = data || {};
   const { firstName, lastName, profile_image } = user_details || {};
-  const navigate = useNavigate();
+  const router = useRouter();
+
 
   return (
     <div
       className="w-full rounded-lg shadow p-4 border bg-white flex flex-col justify-between cursor-pointer"
       onClick={() =>
-        navigate(`/gig-details/${_id}`, {
+        router(`/gig-details/${_id}`, {
           state: { status: isPurchaseReq ? "pending" : status },
         })
       }
@@ -64,7 +65,7 @@ export const GigCard = ({ data, isPurchaseReq, tabIndex }) => {
             tabIndex === 0 && (
               <button
                 className="bg-primary px-[10px] py-[3px] rounded-sm text-white mt-2 font-semibold"
-                onClick={() => navigate(`/gig-details/${_id}`)}
+                onClick={() => router(`/gig-details/${_id}`)}
                 disabled={isPurchaseReq || tabIndex === 1 || tabIndex === 2}
               >
                 {isPurchaseReq ? "Requested" : "Order Now"}
@@ -79,7 +80,7 @@ export const GigCard = ({ data, isPurchaseReq, tabIndex }) => {
             //       paddingBottom={"3px"}
             //       paddingX={"20px"}
             //       onClick={() =>
-            //         navigate(`/gig-details/${_id}`, { state: { status } })
+            //         router(`/gig-details/${_id}`, { state: { status } })
             //       }
             //     >
             //       Details

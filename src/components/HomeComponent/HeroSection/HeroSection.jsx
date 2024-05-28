@@ -1,5 +1,5 @@
 /* eslint-disable react/no-children-prop */
-import { useNavigate } from "react-router-dom";
+import { useRouter } from 'next/router';
 import { MainButton, MainButtonTranparent } from "../../Global/Buttons/Buttons";
 import { IoMdTrendingUp } from "react-icons/io";
 
@@ -19,7 +19,8 @@ const HeroBadge = ({ title }) => {
 }
 
 const HeroSection = () => {
-  const navigate = useNavigate();
+  const router = useRouter();
+
   return (
     <section className="md:w-[80%] w-[90%] max-w-[1200px] mx-auto">
       <div className="w-full mx-[auto] flex justify-between 2xl:justify-around max-2xl:my-10">
@@ -37,8 +38,8 @@ const HeroSection = () => {
               Right here.  Right now.
             </p>
             <div className="flex md:flex-row flex-col items-center gap-4 md:w-fit w-full my-8">
-              <MainButton children={"Become a Freelancer"} onClick={() => (navigate("/signup"))} />
-              <MainButtonTranparent children={"Hire a Freelancer"} onClick={() => (navigate("/signup"))} />
+              <MainButton children={"Become a Freelancer"} onClick={() => (router.push("/signup"))} />
+              <MainButtonTranparent children={"Hire a Freelancer"} onClick={() => (router.push("/signup"))} />
             </div>
           </div>
           <div className="flex flex-col gap-3 max-sm:w-full">

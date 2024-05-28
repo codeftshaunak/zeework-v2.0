@@ -10,7 +10,7 @@ import {
   Flex,
   Text,
 } from "@chakra-ui/react";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { useLocation, userouter, useParams } from "react-router-dom";
 import { FaSearch } from "react-icons/fa";
 import { CgMore } from "react-icons/cg";
 import {
@@ -35,7 +35,8 @@ const MessageComp = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [usersIsLoading, setUsersIsLoading] = useState(true);
   const [query, setQuery] = useState("");
-  const navigate = useNavigate();
+  const router = useRouter();
+
   const { id } = useParams();
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
@@ -69,11 +70,10 @@ const MessageComp = () => {
   };
 
   const getMessagesList = async (receiver_id, contractRef) => {
-    navigate(
-      `/message/${receiver_id}?${
-        contractRef || contract_ref
-          ? `contract_ref=${contractRef || contract_ref}&`
-          : ""
+    router(
+      `/message/${receiver_id}?${contractRef || contract_ref
+        ? `contract_ref=${contractRef || contract_ref}&`
+        : ""
       }`
     );
     setIsLoading(true);
@@ -148,7 +148,7 @@ const MessageComp = () => {
       height="full"
       justifyContent={"space-between"}
       alignItems={"start"}
-      // className="bg-green-500"
+    // className="bg-green-500"
     >
       <Box className="max-xl:w-[120px] w-[350px]">
         <Box
@@ -276,8 +276,8 @@ const MessageComp = () => {
               const name = user?.user_details?.agency_name
                 ? user?.user_details?.agency_name
                 : user?.user_details?.firstName +
-                  " " +
-                  user?.user_details?.lastName;
+                " " +
+                user?.user_details?.lastName;
 
               const photo = user?.user_details?.agency_profileImage
                 ? user?.user_details?.agency_profileImage
@@ -286,9 +286,8 @@ const MessageComp = () => {
               return (
                 <Box
                   key={index}
-                  className={`h-[90px] max-xl:w-0 w-full border rounded-2xl mt-[1rem] flex items-center cursor-pointer ${
-                    isActive ? "border-primary bg-green-100" : "bg-gray-100"
-                  }`}
+                  className={`h-[90px] max-xl:w-0 w-full border rounded-2xl mt-[1rem] flex items-center cursor-pointer ${isActive ? "border-primary bg-green-100" : "bg-gray-100"
+                    }`}
                   onClick={() => {
                     getMessagesList(
                       user?.user_details?.agency_name
@@ -371,7 +370,7 @@ const MessageComp = () => {
           {role == 1 && (
             <Card
               className="px-10 py-2 cursor-pointer"
-              onClick={() => navigate("/my-jobs")}
+              onClick={() => router.push("/my-jobs")}
             >
               <h2>Submit Work</h2>
             </Card>

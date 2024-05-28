@@ -4,7 +4,7 @@ import ActiveJobSlider from "./ActiveJobSlider";
 import ApplyedJobs from "./ApplyedJobs/ApplyedJobs";
 import CompletedJobs from "./ApplyedJobs/CompletedJobs";
 import { VStack, Text, Button, Stack } from "@chakra-ui/react";
-import { useNavigate } from "react-router-dom";
+import { useRouter } from 'next/router';
 import { useCookies } from "react-cookie";
 import HorizontalCardSkeleton from "../Skeletons/HorizontalCardSkeleton";
 import { useDispatch, useSelector } from "react-redux";
@@ -17,7 +17,8 @@ const MyJobsComponentUi = () => {
   const [loading, setLoading] = useState(false);
   const { active_jobs, completed_jobs, applied_jobs, contract_from_agency } =
     userJobs || {};
-  const navigate = useNavigate();
+  const router = useRouter();
+
   const dispatch = useDispatch();
 
   const getUserJobs = async () => {
@@ -84,7 +85,7 @@ const MyJobsComponentUi = () => {
                   backgroundColor: "white",
                   color: "black",
                 }}
-                onClick={() => navigate("/find-job")}
+                onClick={() => router.push("/find-job")}
               >
                 Find Jobs Now
               </Button>

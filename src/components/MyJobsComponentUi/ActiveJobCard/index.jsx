@@ -1,11 +1,12 @@
 import { Box, Flex, Text, Image, VStack } from "@chakra-ui/react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, userouter } from "react-router-dom";
 
 const ActiveJobCard = ({ job }) => {
   const { _id, job_type, contract_title, hourly_rate, budget, status } =
     job || [];
 
-  const navigate = useNavigate();
+  const router = useRouter();
+
 
   return (
     <VStack
@@ -17,18 +18,17 @@ const ActiveJobCard = ({ job }) => {
       justifyContent={"center"}
       cursor={"pointer"}
       onClick={() => {
-        navigate(`/active-job/submit/${_id}`, { state: { job } });
+        router(`/active-job/submit/${_id}`, { state: { job } });
       }}
       _hover={{
         border: "1px solid var(--primarycolor)",
       }}
     >
       <span
-        className={`${
-          status === "task_submited"
-            ? "bg-amber-200 border-amber-500"
-            : "bg-green-300 border-green-500"
-        } rounded-full border px-3 font-medium absolute top-5 right-5`}
+        className={`${status === "task_submited"
+          ? "bg-amber-200 border-amber-500"
+          : "bg-green-300 border-green-500"
+          } rounded-full border px-3 font-medium absolute top-5 right-5`}
       >
         {status === "task_submited" ? "Task Submited" : "Active"}
       </span>
@@ -61,8 +61,8 @@ const ActiveJobCard = ({ job }) => {
             {job_type == "fixed"
               ? "Fixed"
               : job_type == "hourly"
-              ? "Hourly"
-              : ""}
+                ? "Hourly"
+                : ""}
           </Text>
           <Text fontSize="1rem" color="gray.700" fontWeight={"600"}>
             {job_type === "fixed"

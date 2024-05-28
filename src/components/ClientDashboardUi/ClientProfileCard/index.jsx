@@ -1,9 +1,10 @@
 import { Button, Image, Text, VStack, Avatar, Box } from "@chakra-ui/react";
-import { useNavigate } from "react-router-dom";
+import { useRouter } from 'next/router';
 
 const ClientProfileCard = ({ data }) => {
   const { freelancerDetails, freelancer_id } = data;
-  const navigate = useNavigate();
+  const router = useRouter();
+
 
   const sliceName = (fullName) => {
     let parts = fullName?.split(" ");
@@ -51,7 +52,7 @@ const ClientProfileCard = ({ data }) => {
           size="sm"
           w={"100%"}
           onClick={() =>
-            navigate(`/message/${freelancer_id}?contract_ref=${data._id}`)
+            router(`/message/${freelancer_id}?contract_ref=${data._id}`)
           }
         >
           Message

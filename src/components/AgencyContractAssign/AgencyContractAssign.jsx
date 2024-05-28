@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { userouter, useParams } from "react-router-dom";
 import { offerDetails } from "../../helpers/APIs/freelancerApis";
 import { JobDetailsSection } from "../Invitation/JobDetails";
 import { getAgencyActiveMembers } from "../../helpers/APIs/agencyApis";
@@ -18,7 +18,8 @@ const AgencyContractAssign = () => {
   const { assigned_member, _id } = jobDetails;
 
   const { id } = useParams();
-  const navigate = useNavigate();
+  const router = useRouter();
+
 
   const getInvitationDetails = async () => {
     try {
@@ -92,7 +93,7 @@ const AgencyContractAssign = () => {
                     </h2>
                     <MainButtonRounded
                       noRounded
-                      onClick={() => navigate("/search-freelancers")}
+                      onClick={() => router.push("/search-freelancers")}
                       className={"mt-10"}
                     >
                       Invite Freelancer To Join{" "}

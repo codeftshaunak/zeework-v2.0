@@ -1,9 +1,10 @@
-import { useNavigate } from "react-router-dom";
+import { useRouter } from 'next/router';
 import { Button, Stack, Box, Avatar, AvatarBadge } from "@chakra-ui/react";
 import { IoLocation } from "react-icons/io5";
 
 const InvitedFreelancerCard = ({ profile }) => {
-  const navigate = useNavigate();
+  const router = useRouter();
+
 
   const { freelancer_details, receiver_id } = profile;
   return (
@@ -85,7 +86,7 @@ const InvitedFreelancerCard = ({ profile }) => {
                 colorScheme="primary"
                 size={"md"}
                 paddingX={5}
-                onClick={() => navigate(`/message/${receiver_id}`)}
+                onClick={() => router(`/message/${receiver_id}`)}
               >
                 Message
               </Button>

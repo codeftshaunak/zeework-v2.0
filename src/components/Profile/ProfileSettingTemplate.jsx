@@ -4,7 +4,7 @@ import { BsChevronRight } from "react-icons/bs";
 import { useSelector } from "react-redux";
 import FreelancerSettings from "./FreelancerSettings/FreelancerSettings";
 import ClientSettings from "./ClientSettings/ClientSettings";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, userouter } from "react-router-dom";
 
 const ProfileSettingTemplate = () => {
   const role = useSelector((state) => state?.auth?.role);
@@ -82,22 +82,20 @@ const ProfileSettingTemplate = () => {
 export default ProfileSettingTemplate;
 
 const SettingsNav = ({ title, noBorder, active, setStep, step }) => {
-  const navigate = useNavigate();
+  const router = useRouter();
+
 
   const handleClick = () => {
     const newUrl = `/setting/${step}`;
-    navigate(newUrl, { replace: true });
+    router(newUrl, { replace: true });
     setStep(step);
   };
   return (
     <div
-      className={`flex items-center text-[${
-        active ? "#22C35E" : "#374151"
-      }] justify-between py-[16px] border-b-[${
-        !noBorder ? "1px" : "none"
-      }] border-b-[${
-        !noBorder ? "var(--bordersecondary)" : "none"
-      }] px-[24px] cursor-pointer `}
+      className={`flex items-center text-[${active ? "#22C35E" : "#374151"
+        }] justify-between py-[16px] border-b-[${!noBorder ? "1px" : "none"
+        }] border-b-[${!noBorder ? "var(--bordersecondary)" : "none"
+        }] px-[24px] cursor-pointer `}
       onClick={handleClick}
     >
       <p className={`text-[16px]  font-[500]`}>{title}</p>

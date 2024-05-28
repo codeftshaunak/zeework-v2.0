@@ -1,10 +1,11 @@
 import { Box, Text } from "@chakra-ui/react";
-import { useNavigate } from "react-router-dom";
+import { useRouter } from 'next/router';
 
 const CardDetails = ({ message, user_id, role }) => {
   const { title, type, job_type, amount, url, position } =
     message?.card_details || {};
-  const navigate = useNavigate();
+  const router = useRouter();
+
 
   return (
     <>
@@ -57,10 +58,10 @@ const CardDetails = ({ message, user_id, role }) => {
               role == 1
                 ? url?.agency
                   ? message.sender_id === user_id
-                    ? navigate(url.agency)
-                    : navigate(url.freelancer)
-                  : navigate(url.freelancer)
-                : url?.client && navigate(url.client)
+                    ? router(url.agency)
+                    : router(url.freelancer)
+                  : router(url.freelancer)
+                : url?.client && router(url.client)
             }
           >
             Details

@@ -1,8 +1,9 @@
 import { Tooltip } from "@chakra-ui/react";
-import { useNavigate } from "react-router-dom";
+import { useRouter } from 'next/router';
 
 const GigCards = ({ gigs }) => {
-  const navigate = useNavigate();
+  const router = useRouter();
+
 
   return (
     <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3">
@@ -11,7 +12,7 @@ const GigCards = ({ gigs }) => {
           <div
             className="rounded-lg shadow p-4 border bg-white flex flex-col justify-between w-full cursor-pointer"
             onClick={() =>
-              navigate(`/gig-details/${gig._id}`, {
+              router(`/gig-details/${gig._id}`, {
                 state: { status: gig.status },
               })
             }

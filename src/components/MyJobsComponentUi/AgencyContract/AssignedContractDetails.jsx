@@ -10,7 +10,7 @@ import {
 } from "@chakra-ui/react";
 import { useParams } from "react-router-dom";
 import { useToast } from "@chakra-ui/react";
-import { useNavigate } from "react-router-dom";
+import { useRouter } from 'next/router';
 import StarRatings from "react-star-ratings";
 import { FaLocationDot } from "react-icons/fa6";
 import { useForm } from "react-hook-form";
@@ -39,7 +39,8 @@ const AssignedContractDetails = () => {
   } = useForm();
   const clientDetails = jobDetails?.client_details?.[0];
   const { id } = useParams();
-  const navigate = useNavigate();
+  const router = useRouter();
+
 
   const getInvitationDetails = async () => {
     setIsLoading(true);
@@ -102,7 +103,7 @@ const AssignedContractDetails = () => {
           );
         }
 
-        navigate("/my-jobs");
+        router.push("/my-jobs");
       }
     } catch (error) {
       console.error(error);
@@ -198,7 +199,7 @@ const AssignedContractDetails = () => {
                           borderColor={"green.200"}
                           leftIcon={<LuMessagesSquare />}
                           onClick={() =>
-                            navigate(`/message/${jobDetails.client_id}`)
+                            router(`/message/${jobDetails.client_id}`)
                           }
                         >
                           Message

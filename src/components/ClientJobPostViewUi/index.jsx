@@ -1,4 +1,4 @@
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, userouter } from "react-router-dom";
 import CTAButton from "../CTAButton";
 import { ReviewProposal } from "./ReviewProposal";
 import InviteFreelancer from "./InviteFreelancer";
@@ -9,7 +9,8 @@ import { getProposals } from "../../helpers/APIs/clientApis";
 
 export const ClientJobPostViewComponent = () => {
   const location = useLocation();
-  const navigate = useNavigate();
+  const router = useRouter();
+
   const [page, setPage] = useState(0);
   const jobDetails = location?.state && location?.state?.jobDetails;
   const [proposals, setProposals] = useState([]);
@@ -45,7 +46,7 @@ export const ClientJobPostViewComponent = () => {
             color={"#ffff"}
             fontSize="1rem"
             height="2.5rem"
-            onClick={() => navigate("/create-job")}
+            onClick={() => router.push("/create-job")}
           ></CTAButton>
         </div>
       </div>
@@ -54,11 +55,10 @@ export const ClientJobPostViewComponent = () => {
         <div className="grid gap-1 md:grid-cols-4 md:w-[73.5%]">
           <div className="col-span-1">
             <div
-              className={`hover:bg-[#F0FDF4] h-[56px] flex justify-center items-center cursor-pointer rounded-l-lg ${
-                page === 0
-                  ? "bg-green-100 border-b-2 border-green-500"
-                  : "border bg-white"
-              }`}
+              className={`hover:bg-[#F0FDF4] h-[56px] flex justify-center items-center cursor-pointer rounded-l-lg ${page === 0
+                ? "bg-green-100 border-b-2 border-green-500"
+                : "border bg-white"
+                }`}
               onClick={() => {
                 setPage(0);
               }}
@@ -68,11 +68,10 @@ export const ClientJobPostViewComponent = () => {
           </div>
           <div className="col-span-1">
             <div
-              className={`hover:bg-[#F0FDF4] h-[56px] flex justify-center items-center cursor-pointer ${
-                page === 1
-                  ? "bg-green-100 border-b-2 border-green-500"
-                  : "border bg-white"
-              }`}
+              className={`hover:bg-[#F0FDF4] h-[56px] flex justify-center items-center cursor-pointer ${page === 1
+                ? "bg-green-100 border-b-2 border-green-500"
+                : "border bg-white"
+                }`}
               onClick={() => setPage(1)}
             >
               <p>Invite Freelancers</p>
@@ -80,11 +79,10 @@ export const ClientJobPostViewComponent = () => {
           </div>
           <div className="col-span-1">
             <div
-              className={`hover:bg-[#F0FDF4] h-[56px] flex justify-center items-center cursor-pointer ${
-                page === 2
-                  ? "bg-green-100 border-b-2 border-green-500"
-                  : "border bg-white"
-              }`}
+              className={`hover:bg-[#F0FDF4] h-[56px] flex justify-center items-center cursor-pointer ${page === 2
+                ? "bg-green-100 border-b-2 border-green-500"
+                : "border bg-white"
+                }`}
               onClick={() => setPage(2)}
             >
               <p>
@@ -93,8 +91,8 @@ export const ClientJobPostViewComponent = () => {
                   (
                   {jobDetails?.proposal_details
                     ? jobDetails?.proposal_details?.filter(
-                        (job) => job.contract_status === "applied"
-                      )?.length
+                      (job) => job.contract_status === "applied"
+                    )?.length
                     : 0}
                   )
                 </span>
@@ -103,11 +101,10 @@ export const ClientJobPostViewComponent = () => {
           </div>
           <div className="col-span-1">
             <div
-              className={`hover:bg-[#F0FDF4] h-[56px] flex justify-center items-center cursor-pointer rounded-r-lg ${
-                page === 3
-                  ? "bg-green-100 border-b-2 border-green-500"
-                  : "border bg-white"
-              }`}
+              className={`hover:bg-[#F0FDF4] h-[56px] flex justify-center items-center cursor-pointer rounded-r-lg ${page === 3
+                ? "bg-green-100 border-b-2 border-green-500"
+                : "border bg-white"
+                }`}
               onClick={() => setPage(3)}
             >
               <p>

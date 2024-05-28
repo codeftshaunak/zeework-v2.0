@@ -7,7 +7,7 @@ import SecondStep from "../JobCreate/SecondStep";
 import FinalStep from "../JobCreate/FinalStep";
 import Preview from "../JobCreate/Preview";
 import HomeLayout from "../../Layouts/HomeLayout";
-import { useNavigate, useLocation } from "react-router-dom";
+import { userouter, useLocation } from "react-router-dom";
 import { updateJob } from "../../helpers/APIs/jobApis";
 
 const UpdateJob = () => {
@@ -16,7 +16,8 @@ const UpdateJob = () => {
   // const [jobDetails, setJobDetails] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   // const { id } = useParams();
-  const navigate = useNavigate();
+  const router = useRouter();
+
   const location = useLocation();
   const jobDetails = location.state && location?.state?.jobDetails;
 
@@ -56,7 +57,7 @@ const UpdateJob = () => {
         isClosable: true,
         position: "top-right",
       });
-      navigate(`/client-jobDetails/${jobDetails?._id}`, {
+      router(`/client-jobDetails/${jobDetails?._id}`, {
         state: { jobDetails: body },
       });
     } else {
@@ -68,14 +69,14 @@ const UpdateJob = () => {
         position: "top-right",
       });
 
-      navigate(-1);
+      router(-1);
     }
     setIsLoading(false);
   };
 
   // check job details
   useEffect(() => {
-    if (!jobDetails) return navigate("/");
+    if (!jobDetails) return router.push("/");
   }, []);
 
   return (

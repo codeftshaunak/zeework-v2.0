@@ -12,13 +12,14 @@ import {
   Button,
   Box,
 } from "@chakra-ui/react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, userouter } from "react-router-dom";
 import HorizontalCardSkeleton from "../../Skeletons/HorizontalCardSkeleton";
 import { PiDotsThreeOutlineFill } from "react-icons/pi";
 import { useState } from "react";
 
 const ApplyedJobs = ({ applyJobs, loading }) => {
-  const navigate = useNavigate();
+  const router = useRouter();
+
   const [hidden, setHidden] = useState(false);
   const reversedApplyJobs = applyJobs?.slice()?.reverse();
   return (
@@ -94,9 +95,8 @@ const ApplyedJobs = ({ applyJobs, loading }) => {
                       className={item === null ? "!hidden" : ""}
                     >
                       <Td
-                        className={`text-[1.1rem] max-[480px]:text-[0.8rem] max-lg:${
-                          hidden ? "" : "hidden"
-                        }`}
+                        className={`text-[1.1rem] max-[480px]:text-[0.8rem] max-lg:${hidden ? "" : "hidden"
+                          }`}
                         textAlign={"center"}
                         width={"33%"}
                       >
@@ -104,9 +104,8 @@ const ApplyedJobs = ({ applyJobs, loading }) => {
                       </Td>
                       <Td
                         width={"33%"}
-                        className={`max-lg:!w-[100%] flex-row max-lg:${
-                          !hidden ? "" : "hidden"
-                        }`}
+                        className={`max-lg:!w-[100%] flex-row max-lg:${!hidden ? "" : "hidden"
+                          }`}
                       >
                         <div className="text-[#22C35E] text-lg font-medium capitalize text-center">
                           <Link
@@ -133,9 +132,8 @@ const ApplyedJobs = ({ applyJobs, loading }) => {
                       </Td>
                       <Td
                         height={"2rem"}
-                        className={`text-[1.1rem] max-lg:${
-                          hidden ? "" : "hidden"
-                        }`}
+                        className={`text-[1.1rem] max-lg:${hidden ? "" : "hidden"
+                          }`}
                         textAlign={"center"}
                         width={"33%"}
                       >
@@ -187,7 +185,7 @@ const ApplyedJobs = ({ applyJobs, loading }) => {
               color: "black",
             }}
             onClick={() => {
-              navigate("/find-job");
+              router.push("/find-job");
             }}
           >
             Visit For New Opportunities

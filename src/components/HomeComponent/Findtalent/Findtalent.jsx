@@ -1,9 +1,10 @@
 /* eslint-disable react/no-children-prop */
-import { useNavigate } from "react-router-dom";
+import { useRouter } from 'next/router';
 import { GreenButton } from "../../Global/Buttons/Buttons";
 
 const Findtalent = () => {
-  const navigate = useNavigate();
+  const router = useRouter();
+
   return (
     <section className="md:w-[85%] w-[90%] max-w-[1200px] mb-16 mx-[auto]">
       <div className="w-full">
@@ -21,7 +22,7 @@ const Findtalent = () => {
                 get things done—from quick turnarounds to big transformations.
               </p>
               <div className=" z-50">
-                <GreenButton children={"Hire a Freelancer"} onClick={() => (navigate("/signup"))} />
+                <GreenButton children={"Hire a Freelancer"} onClick={() => (router.push("/signup"))} />
               </div>
             </div>
           </div>

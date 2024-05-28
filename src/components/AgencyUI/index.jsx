@@ -1,6 +1,6 @@
 import { Button } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useRouter } from 'next/router';
 import ClientProfileCard from "./ProfileCard";
 import {
   getClientJobs,
@@ -11,7 +11,8 @@ import UserProfileCard from "./../FindJobUi/UserCard";
 import AgencyUserCard from "../FindJobUi/AgencyUserCard";
 
 const AgencyDashboard = () => {
-  const navigate = useNavigate();
+  const router = useRouter();
+
   const [jobs, setJobs] = useState([]);
   const [hiredList, setHiredList] = useState([]);
   const uniqueHired = [];
@@ -147,7 +148,7 @@ const AgencyDashboard = () => {
           <UserProfileCard />
           <button
             className="bg-[#22C35E] text-[#fff] border-2 border-[#22C35E] text-md w-[90%] text-center mt-4  rounded-md font-semibold py-1"
-            onClick={() => navigate("/search-freelancers")}
+            onClick={() => router.push("/search-freelancers")}
           >
             Invite Freelancer To Your Agency
           </button>

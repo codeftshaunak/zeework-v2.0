@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { JobDetailsSection } from "../Invitation/JobDetails";
-import { useNavigate, useParams } from "react-router-dom";
+import { userouter, useParams } from "react-router-dom";
 import { offerDetails } from "../../helpers/APIs/freelancerApis";
 import { Avatar, Button } from "@chakra-ui/react";
 import { FaLocationDot } from "react-icons/fa6";
@@ -14,7 +14,8 @@ const CompleteJob = () => {
   const [jobDetails, setJobDetails] = useState({});
 
   const { id } = useParams();
-  const navigate = useNavigate();
+  const router = useRouter();
+
   const { client_details, freelancer_review, _id } = jobDetails;
 
   const getInvitationDetails = async () => {
@@ -105,7 +106,7 @@ const CompleteJob = () => {
                 isDisabled={freelancer_review}
                 onClick={() =>
                   !freelancer_review &&
-                  navigate(`/submit-review/${_id}`, {
+                  router(`/submit-review/${_id}`, {
                     state: {
                       jobDetails: jobDetails,
                       receiverDetails: client_details?.[0],

@@ -17,7 +17,7 @@ import { HStack, Avatar } from "@chakra-ui/react";
 import { getAllDetailsOfUser, uploadImage } from "../../helpers/APIs/userApis";
 import { CiLocationOn } from "react-icons/ci";
 import { formatTime, getUserLocation } from "../../helpers/APIs/formet";
-import { useNavigate } from "react-router-dom";
+import { useRouter } from 'next/router';
 import { getWorkHistory } from "../../helpers/APIs/freelancerApis";
 import { useDispatch, useSelector } from "react-redux";
 import UniversalModal from "../Modals/UniversalModal";
@@ -36,7 +36,8 @@ import { BiSolidCrop } from "react-icons/bi";
 export const ClientProfilePage = () => {
   const profile = useSelector((state) => state.profile.profile);
   const [workHistory, setWorkHistory] = useState([]);
-  const navigate = useNavigate();
+  const router = useRouter();
+
   const toast = useToast();
   const role = useSelector((state) => state.auth.role);
   const [isModal, setIsModal] = useState(false);
@@ -283,7 +284,7 @@ export const ClientProfilePage = () => {
               </div>
               <button
                 className="py-[8px] px-[12px] rounded-[6px] text-[14px] font-500 text-[#fff] bg-[#22C55E]"
-                onClick={() => navigate("/setting")}
+                onClick={() => router.push("/setting")}
               >
                 Profile Settings
               </button>

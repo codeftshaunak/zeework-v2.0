@@ -5,7 +5,7 @@ import {
   updateOfferRequest,
   offerDetails,
 } from "../../helpers/APIs/freelancerApis";
-import { useNavigate } from "react-router-dom";
+import { useRouter } from 'next/router';
 import { SocketContext } from "../../Contexts/SocketContext";
 import Modal from "./Modal";
 import { ClientDetailsSection } from "./ClientDetailsSection";
@@ -17,7 +17,8 @@ import { setMyJobsData } from "../../redux/pagesSlice/pagesSlice";
 import DataNotAvailable from "../DataNotAvailable/DataNotAvailable";
 
 const Offer = () => {
-  const navigate = useNavigate();
+  const router = useRouter();
+
   const currentUrl = window.location.href;
   const { offer_id, job_id } = queryString.parseUrl(currentUrl).query;
   const [openModal, setOpenModal] = useState(false);
@@ -67,7 +68,7 @@ const Offer = () => {
           position: "top-right",
         });
         sendMessage(messages, statusValue);
-        navigate("/my-jobs");
+        router.push("/my-jobs");
         dispatch(setMyJobsData({ userJobs: {} }));
       } else {
         toast({
@@ -112,7 +113,7 @@ const Offer = () => {
           status: "success",
           position: "top-right",
         });
-        navigate("/my-jobs");
+        router.push("/my-jobs");
       } else {
         toast({
           title: res.msg || res.message,

@@ -14,11 +14,12 @@ import {
 import HorizontalCardSkeleton from "../Skeletons/HorizontalCardSkeleton";
 import { PiDotsThreeOutlineFill } from "react-icons/pi";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useRouter } from 'next/router';
 
 const ActiveContract = ({ contractList, loading }) => {
   const [hidden, setHidden] = useState(false);
-  const navigate = useNavigate();
+  const router = useRouter();
+
 
   return (
     <div className="my-3 space-y-4">
@@ -201,7 +202,7 @@ const ActiveContract = ({ contractList, loading }) => {
                           rounded="full"
                           variant="outline"
                           size="sm"
-                          onClick={() => navigate(`/contract/${item._id}`)}
+                          onClick={() => router(`/contract/${item._id}`)}
                         >
                           Details
                         </Button>
@@ -236,7 +237,7 @@ const ActiveContract = ({ contractList, loading }) => {
               color: "black",
             }}
             onClick={() => {
-              navigate("/find-job");
+              router.push("/find-job");
             }}
           >
             Visit For New Opportunities

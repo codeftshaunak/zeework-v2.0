@@ -1,7 +1,7 @@
 import { Button, Tooltip } from "@chakra-ui/react";
 import { useState } from "react";
 import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useRouter } from 'next/router';
 
 import GetFreelancerPaid from "./GetFreelancerPaid";
 
@@ -11,7 +11,8 @@ const AvailableDetails = ({ balance }) => {
   const paymentStatus = useSelector(
     (state) => state.profile.profile.payment_verified
   );
-  const navigate = useNavigate();
+  const router = useRouter();
+
 
   return (
     <>
@@ -72,7 +73,7 @@ const AvailableDetails = ({ balance }) => {
               variant="outline"
               rounded="full"
               className="w-full md:w-fit"
-              onClick={() => navigate("/setting/billing-payments")}
+              onClick={() => router.push("/setting/billing-payments")}
             >
               Verify Payment Methods
             </Button>

@@ -14,7 +14,7 @@ import {
 import { getCategories, getCountries } from "../../helpers/APIs/freelancerApis";
 import { getSubCategory } from "../../helpers/APIs/freelancerApis";
 import { createAgency } from "../../helpers/APIs/agencyApis";
-import { useNavigate } from "react-router-dom";
+import { useRouter } from 'next/router';
 import { CurrentUserContext } from "../../Contexts/CurrentUser";
 import BtnSpinner from "../Skeletons/BtnSpinner";
 
@@ -26,7 +26,8 @@ const CreateForm = () => {
   const [category, setCategory] = useState([]);
   const [loading, setLoading] = useState(false);
   const [subCategories, setSubCategories] = useState([]);
-  const navigate = useNavigate();
+  const router = useRouter();
+
   const toast = useToast();
 
   const getCountriesList = async () => {
@@ -84,7 +85,7 @@ const CreateForm = () => {
         });
         getUserDetails();
 
-        navigate(-1);
+        router(-1);
       } else {
         toast({
           title: msg,

@@ -1,9 +1,10 @@
 import { VStack, Text, Button, Box, Image, Stack } from "@chakra-ui/react";
-import { useNavigate } from "react-router-dom";
+import { useRouter } from 'next/router';
 import HorizontalCardSkeleton from "../../Skeletons/HorizontalCardSkeleton";
 
 const CompletedJobs = ({ completedJobs, loading }) => {
-  const navigate = useNavigate();
+  const router = useRouter();
+
   return (
     <div className="my-3 space-y-4">
       <h2 className="mt-8 mb-4 text-2xl font-medium">Completed Jobs</h2>
@@ -23,7 +24,7 @@ const CompletedJobs = ({ completedJobs, loading }) => {
                   <VStack
                     key={index}
                     className="border p-4 m-2 rounded w-[280px] my-auto mx-auto relative cursor-pointer bg-white"
-                    onClick={() => navigate(`/job/complete/${item?._id}`)}
+                    onClick={() => router(`/job/complete/${item?._id}`)}
                   >
                     <Image
                       src="./images/complete_job.png"
@@ -95,7 +96,7 @@ const CompletedJobs = ({ completedJobs, loading }) => {
                   backgroundColor: "white",
                   color: "black",
                 }}
-                onClick={() => navigate("/find-job")}
+                onClick={() => router.push("/find-job")}
               >
                 Find Jobs Now
               </Button>

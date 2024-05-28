@@ -2,7 +2,7 @@
 import { useCallback, useContext, useEffect, useState } from "react";
 import { getAllJobs, getJobs } from "../../helpers/APIs/jobApis";
 import JobCard from "./JobCard";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, userouter } from "react-router-dom";
 import {
   Box,
   Checkbox,
@@ -32,7 +32,8 @@ import { setFindWorkData } from "../../redux/pagesSlice/pagesSlice";
 import { IoMdRefreshCircle } from "react-icons/io";
 
 // const TopItem = ({ title, image, subTitle, redirect }) => {
-//   const navigate = useNavigate();
+//   const router = useRouter();
+
 
 //   return (
 //     <HStack
@@ -52,7 +53,7 @@ import { IoMdRefreshCircle } from "react-icons/io";
 //       <img src={image} alt="proposals" />
 //       <div
 //         onClick={() => {
-//           navigate(`/${redirect}`);
+//           router(`/${redirect}`);
 //         }}
 //       >
 //         <div className="text-sm font-semibold">{title}</div>
@@ -65,7 +66,8 @@ import { IoMdRefreshCircle } from "react-icons/io";
 export const AllJobs = () => {
   const jobs = useSelector((state) => state.pages.findWork.jobsList);
   const latestJobs = jobs?.slice(0, 4);
-  const navigate = useNavigate();
+  const router = useRouter();
+
   const { hasAgency, activeAgency } = useContext(CurrentUserContext);
   const [isLoading, setIsLoading] = useState(false);
   const dispatch = useDispatch();
@@ -111,7 +113,7 @@ export const AllJobs = () => {
               <img src="/images/dashboard/zeework_stats.png" alt="proposals" />
               <div
                 onClick={() => {
-                  navigate("/my-stats");
+                  router.push("/my-stats");
                 }}
               >
                 <div className="text-md font-semibold">My Stats</div>
@@ -124,7 +126,7 @@ export const AllJobs = () => {
               <img src="/images/dashboard/zeework_jobs.png" alt="proposals" />
               <div
                 onClick={() => {
-                  navigate("/my-jobs");
+                  router.push("/my-jobs");
                 }}
               >
                 <div className="text-md font-semibold">My Jobs</div>
@@ -176,7 +178,7 @@ export const AllJobs = () => {
               <img src="/images/dashboard/zeework_stats.png" alt="proposals" />
               <div
                 onClick={() => {
-                  navigate("/my-stats");
+                  router.push("/my-stats");
                 }}
               >
                 <div className="text-sm font-semibold">My Stats</div>
@@ -202,7 +204,7 @@ export const AllJobs = () => {
               <img src="/images/dashboard/zeework_jobs.png" alt="proposals" />
               <div
                 onClick={() => {
-                  navigate("/my-jobs");
+                  router.push("/my-jobs");
                 }}
               >
                 <div className="text-sm font-semibold">My Jobs</div>
@@ -230,7 +232,7 @@ export const AllJobs = () => {
             <div className="mx-auto mt-4">
               <button
                 className="bg-[#E7F2EB] text-[#22C55E] border-2 w-[130px] m-auto border-[#22C55E] px-4 py-2 rounded-md flex items-center gap-2"
-                onClick={() => navigate("/search-job")}
+                onClick={() => router.push("/search-job")}
               >
                 See More{" "}
                 <img
@@ -289,7 +291,8 @@ export const SearchJobPage = ({ isFreelancer }) => {
   const [sQueryValue, setSQueryValue] = useState(null);
   const [fixedRateMin, setFixedRateMin] = useState(null);
   const [fixedRateMax, setFixRateMax] = useState(null);
-  const navigate = useNavigate();
+  const router = useRouter();
+
   const [showFilter, setShowFilter] = useState(false);
   // pagination details
   const totalPages = Math.ceil(jobsData?.totalLength / 20);
@@ -467,7 +470,7 @@ export const SearchJobPage = ({ isFreelancer }) => {
       if (hourlyRateShow) setHourlyRateMin(null), setHourlyRateMax(null);
     }
 
-    // Update contract type and navigate with filters
+    // Update contract type and router with filters
     setContractType((prev) => {
       const updatedContractType = prev.includes(contractTypeValue)
         ? prev.filter((type) => type !== contractTypeValue)
@@ -540,7 +543,7 @@ export const SearchJobPage = ({ isFreelancer }) => {
     setSearchTerm("");
     // fetchJobs();
     setShowHighlightedSearchTerm(false);
-    navigate("/search-job", { replace: true });
+    router.push("/search-job", { replace: true });
   };
 
   return (

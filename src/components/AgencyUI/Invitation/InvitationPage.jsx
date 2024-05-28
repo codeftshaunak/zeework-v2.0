@@ -5,7 +5,7 @@ import {
   acceptInvitation,
   invitationDetails,
 } from "../../../helpers/APIs/freelancerApis";
-import { useNavigate } from "react-router-dom";
+import { useRouter } from 'next/router';
 import { SocketContext } from "../../../Contexts/SocketContext";
 import { ClientDetailsSection } from "../../Invitation/ClientDetailsSection";
 import Modal from "../../Invitation/Modal";
@@ -13,7 +13,8 @@ import { JobDetailsSection } from "../../Invitation/JobDetails";
 import AgencyDetails from "../../Invitation/AgencyDetails";
 
 const InterviewPage = () => {
-  const navigate = useNavigate();
+  const router = useRouter();
+
   const [openModal, setOpenModal] = useState(false);
   const [jobDetails, setJobDetails] = useState();
 
@@ -42,7 +43,7 @@ const InterviewPage = () => {
   //         if (response.code === 200) {
   //             const message = statusValue === "1" ? "Invitation Accepted Successfully!!!" : "You've Rejected Interview!!!";
   //             toast({ title: message, duration: '3000', colorScheme: statusValue === "1" ? 'green' : 'warning', position: 'top-right' });
-  //             navigate("/message");
+  //             router.push("/message");
   //         }
   //     } catch (error) {
   //         toast({ title: "Error performing action", duration: '3000', position: 'top-right', status: 'warning', isClosable: true });

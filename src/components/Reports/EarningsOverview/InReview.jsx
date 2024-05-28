@@ -1,6 +1,6 @@
 import { Button, Tooltip } from "@chakra-ui/react";
 import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useRouter } from 'next/router';
 
 const InReview = ({ balance }) => {
     return (

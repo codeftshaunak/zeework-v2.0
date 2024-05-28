@@ -2,7 +2,7 @@ import { Avatar, Box, Button, Text, useToast, VStack } from "@chakra-ui/react";
 import { useState } from "react";
 import { MainButtonRounded } from "../Button/MainButton";
 import { BiDotsVerticalRounded } from "react-icons/bi";
-import { useNavigate } from "react-router-dom";
+import { useRouter } from 'next/router';
 import UniversalModal from "../Modals/UniversalModal";
 import BtnSpinner from "../Skeletons/BtnSpinner";
 import { MdRemoveModerator } from "react-icons/md";
@@ -20,7 +20,8 @@ const AssignedMember = ({ member, contract_ref, setJobDetails }) => {
     freelancer_id,
     _id,
   } = member || {};
-  const navigate = useNavigate();
+  const router = useRouter();
+
   const toast = useToast();
 
   const handleEndContract = async () => {
@@ -80,7 +81,7 @@ const AssignedMember = ({ member, contract_ref, setJobDetails }) => {
           </Text>
         </Box>
         <MainButtonRounded
-          onClick={() => navigate(`/freelancer/${freelancer_id}`)}
+          onClick={() => router(`/freelancer/${freelancer_id}`)}
         >
           View Profile
         </MainButtonRounded>

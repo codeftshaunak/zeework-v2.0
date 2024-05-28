@@ -1,13 +1,13 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useRouter } from 'next/router';
 
 const TimerDownloadCard = ({ msg }) => {
-  const navigate = useNavigate();
+  const router = useRouter();
+
   return (
     <div
-      className={`${
-        msg ? "xl:w-[250px]" : "xl:w-[350px]"
-      } mt-6 mx-auto rounded-2xl w-full  h-[500px] relative bg-gradient-to-br from-[#F2FDF0] to-[#A4B8A1]`}
+      className={`${msg ? "xl:w-[250px]" : "xl:w-[350px]"
+        } mt-6 mx-auto rounded-2xl w-full  h-[500px] relative bg-gradient-to-br from-[#F2FDF0] to-[#A4B8A1]`}
     >
       <div>
         <img
@@ -28,7 +28,7 @@ const TimerDownloadCard = ({ msg }) => {
         </div>
         <button
           className="bg-[#22C55E] text-secondary rounded-lg h-[36px] w-[145px]"
-          onClick={() => navigate("/downloads")}
+          onClick={() => router.push("/downloads")}
         >
           Download Now
         </button>

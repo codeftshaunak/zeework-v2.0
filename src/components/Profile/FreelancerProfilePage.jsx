@@ -9,7 +9,7 @@ import { CiLocationOn } from "react-icons/ci";
 import { formatTime, getUserLocation } from "../../helpers/APIs/formet";
 import { ProfileModal } from "./ProfileModal";
 import AlertDeleteDialog from "./DeleteModal";
-import { useNavigate } from "react-router-dom";
+import { useRouter } from 'next/router';
 import { useSelector } from "react-redux";
 import { ProfileGigCards } from "../Gigs/SingleGig/ProfileGigCards";
 // Import Swiper React components
@@ -29,7 +29,8 @@ import { MainButtonRounded } from "../Button/MainButton";
 export const FreelancerProfilePage = ({ viewAs }) => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [modalPage, setModalPage] = useState("");
-  const navigate = useNavigate();
+  const router = useRouter();
+
   const [showDetails, setShowDetails] = useState(false);
   const [deleteModalOpen, setDeleteModalOpen] = useState(false);
   const [workHistory, setWorkHistory] = useState([]);
@@ -237,7 +238,7 @@ export const FreelancerProfilePage = ({ viewAs }) => {
             {!viewAs && (
               <button
                 className="py-[8px] px-[12px] rounded-[6px] text-[14px] font-500 text-[#fff] bg-[#22C55E]"
-                onClick={() => navigate("/setting")}
+                onClick={() => router.push("/setting")}
               >
                 Profile Settings
               </button>
@@ -280,7 +281,7 @@ export const FreelancerProfilePage = ({ viewAs }) => {
                     <p
                       className="font-medium text-primary flex items-center gap-1 cursor-pointer"
                       onClick={() =>
-                        navigate(`/agency/${associateAgency?.agency_id}`)
+                        router(`/agency/${associateAgency?.agency_id}`)
                       }
                     >
                       {associateAgency?.agency_details?.agency_name}{" "}
@@ -779,7 +780,7 @@ export const FreelancerProfilePage = ({ viewAs }) => {
                 {!viewAs && (
                   <button
                     className="text-start px-5 py-1 rounded-full border-2 border-[var(--primarytextcolor)] hover:text-white hover:bg-[var(--primarytextcolor)] transition h-fit w-fit font-semibold mt-3"
-                    onClick={() => navigate("/freelancer/gig")}
+                    onClick={() => router.push("/freelancer/gig")}
                   >
                     Manage Gigs
                   </button>

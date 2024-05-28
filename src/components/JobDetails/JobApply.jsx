@@ -15,7 +15,7 @@ import {
   getAgencyAllJobs,
   userAllJobs,
 } from "../../helpers/APIs/jobApis";
-import { useNavigate, useParams } from "react-router-dom";
+import { userouter, useParams } from "react-router-dom";
 import { CurrentUserContext } from "../../Contexts/CurrentUser";
 import { useSelector } from "react-redux";
 import {
@@ -102,7 +102,8 @@ const JobApply = ({ setPage, details }) => {
   };
 
   const toast = useToast();
-  const navigate = useNavigate();
+  const router = useRouter();
+
 
   const handleFixedJobSubmit = async () => {
     setIsLoading(true);
@@ -171,7 +172,7 @@ const JobApply = ({ setPage, details }) => {
     });
 
     if (isSuccess) {
-      navigate("/find-job");
+      router.push("/find-job");
     }
   };
 

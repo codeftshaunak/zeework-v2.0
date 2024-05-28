@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useRouter } from 'next/router';
 import { useFormState } from "../../Contexts/FormContext";
 import { FaRegCreditCard } from "react-icons/fa";
 import { useSelector } from "react-redux";
 
 function Complete({ setStep }) {
-  const navigate = useNavigate();
+  const router = useRouter();
+
   const { clearFormState } = useFormState();
   const [isPaymentVerified, setIsPaymentVerified] = useState(
     useSelector((state) => state?.profile?.profile.payment_verified)
@@ -95,7 +96,7 @@ function Complete({ setStep }) {
             <div className="w-full h-9 flex-col justify-start items-start gap-2.5 inline-flex">
               <div
                 className="self-stretch grow shrink basis-0 px-3 py-2 bg-gray-50 rounded-md shadow border border-gray-300 justify-center items-center gap-1 inline-flex cursor-pointer"
-                onClick={() => navigate("/client-dashboard")}
+                onClick={() => router.push("/client-dashboard")}
               >
                 <div className="text-center text-gray-700 text-sm font-medium font-['SF Pro Text'] leading-tight">
                   Back to Home
@@ -109,7 +110,7 @@ function Complete({ setStep }) {
                 onClick={() => {
                   isPaymentVerified
                     ? setStep(1)
-                    : navigate("/setting/billing-payments");
+                    : router.push("/setting/billing-payments");
                 }}
               >
                 <div className="text-center text-white text-sm font-medium font-['SF Pro Text'] leading-tight">

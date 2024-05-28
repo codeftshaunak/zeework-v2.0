@@ -14,7 +14,7 @@ import { BiSolidDislike } from "react-icons/bi";
 import { BiSolidLike } from "react-icons/bi";
 import StarRatings from "react-star-ratings";
 import { useSelector } from "react-redux";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, userouter } from "react-router-dom";
 import { giveFeedback, getOptionsList } from "../../helpers/APIs/clientApis";
 import BtnSpinner from "../Skeletons/BtnSpinner";
 import { MdCheckCircle } from "react-icons/md";
@@ -41,7 +41,8 @@ const ReviewComponent = () => {
   const toast = useToast();
   const [isLoading, setIsLoading] = useState(false);
   const [isModal, setIsModal] = useState(false);
-  const navigate = useNavigate();
+  const router = useRouter();
+
 
   const [formData, setFormData] = useState({
     receiver_id: "",
@@ -149,7 +150,7 @@ const ReviewComponent = () => {
         });
 
         setIsModal(true);
-        // navigate("/");
+        // router.push("/");
       } else {
         toast({
           title: msg,
@@ -516,7 +517,7 @@ const ReviewComponent = () => {
                 <div
                   className="self-stretch grow shrink basis-0 px-3 py-2 bg-gray-50 rounded-md shadow border border-gray-300 justify-center items-center gap-1 inline-flex cursor-pointer"
                   onClick={() =>
-                    navigate(role == 1 ? "/my-jobs" : "/client-dashboard")
+                    router(role == 1 ? "/my-jobs" : "/client-dashboard")
                   }
                 >
                   <div className="text-center text-gray-700 text-sm font-medium font-['SF Pro Text'] leading-tight">
@@ -528,7 +529,7 @@ const ReviewComponent = () => {
                 <div
                   className="self-stretch h-9 px-3 py-2 bg-green-500 rounded-md shadow justify-center items-center gap-1 inline-flex cursor-pointer"
                   onClick={() =>
-                    navigate(role == 1 ? `/find-job` : "/my-stats")
+                    router(role == 1 ? `/find-job` : "/my-stats")
                   }
                 >
                   <div className="text-center text-white text-sm font-medium font-['SF Pro Text'] leading-tight">

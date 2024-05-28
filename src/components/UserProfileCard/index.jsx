@@ -1,11 +1,12 @@
 import { useSelector } from "react-redux";
 import { Avatar } from "@chakra-ui/react";
-import { useNavigate } from "react-router-dom";
+import { useRouter } from 'next/router';
 
 const UserProfileCard = () => {
   const profile = useSelector((state) => state.profile);
   const { name, profile_image, professional_role, id } = profile.profile || {};
-  const navigate = useNavigate();
+  const router = useRouter();
+
   return (
     <div className="w-[320px] pl-6 mt-3">
       <div className="h-[auto] border border-tertiary rounded-2xl">
@@ -21,7 +22,7 @@ const UserProfileCard = () => {
           )}
           <div
             className="text-2xl font-medium cursor-pointer capitalize"
-            onClick={() => navigate(`/profile`)}
+            onClick={() => router(`/profile`)}
           >
             {name}
           </div>

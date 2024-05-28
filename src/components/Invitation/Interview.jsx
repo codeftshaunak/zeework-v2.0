@@ -5,7 +5,7 @@ import {
   acceptInvitation,
   invitationDetails,
 } from "../../helpers/APIs/freelancerApis";
-import { useNavigate } from "react-router-dom";
+import { useRouter } from 'next/router';
 import { JobDetailsSection } from "./JobDetails";
 import { SocketContext } from "../../Contexts/SocketContext";
 import Modal from "./Modal";
@@ -14,7 +14,8 @@ import InvitationSkeleton from "../Skeletons/InvitationSkeleton";
 import DataNotAvailable from "../DataNotAvailable/DataNotAvailable";
 
 const Interview = () => {
-  const navigate = useNavigate();
+  const router = useRouter();
+
   const currentUrl = window.location.href;
   const { job_id, invite_id } = queryString.parseUrl(currentUrl).query;
   const [openModal, setOpenModal] = useState(false);
@@ -65,7 +66,7 @@ const Interview = () => {
           colorScheme: "green",
           position: "top-right",
         });
-        navigate("/");
+        router.push("/");
       } else {
         toast({
           title: msg,

@@ -4,11 +4,12 @@ import { BiSearchAlt } from "react-icons/bi";
 import { CiFilter } from "react-icons/ci";
 
 import { SearchFilter } from "./SearchFilter";
-import { useNavigate } from "react-router-dom";
+import { useRouter } from 'next/router';
 
 const MarketplaceHeader = ({ category }) => {
   const [searchText, setSearchText] = useState("");
-  const navigate = useNavigate();
+  const router = useRouter();
+
 
   const handleSearchTextChange = (event) => {
     setSearchText(event.target.value);
@@ -22,7 +23,7 @@ const MarketplaceHeader = ({ category }) => {
       queryParams.delete("searchText");
     }
     const newUrl = `${window.location.pathname}?${queryParams.toString()}`;
-    navigate(newUrl);
+    router(newUrl);
   };
 
   return (

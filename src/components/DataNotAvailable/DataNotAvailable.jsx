@@ -1,10 +1,11 @@
 import { Button } from "@chakra-ui/react";
-import { useNavigate } from "react-router-dom";
+import { useRouter } from 'next/router';
 import { GoHomeFill } from "react-icons/go";
 import { TiRefresh } from "react-icons/ti";
 
 const DataNotAvailable = ({ onRefresh }) => {
-  const navigate = useNavigate();
+  const router = useRouter();
+
 
   const handleRefresh = () => {
     if (onRefresh) {
@@ -15,7 +16,7 @@ const DataNotAvailable = ({ onRefresh }) => {
   };
 
   const handleGoToHome = () => {
-    navigate("/");
+    router.push("/");
   };
 
   return (

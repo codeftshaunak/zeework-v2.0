@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useRouter } from 'next/router';
 import {
   Text,
   HStack,
@@ -20,7 +20,8 @@ import { getAgencyMembers } from "../../helpers/APIs/agencyApis";
 import { CurrentUserContext } from "../../Contexts/CurrentUser";
 
 const AgencyMembers = () => {
-  const navigate = useNavigate();
+  const router = useRouter();
+
   return (
     <div className="w-full mt-5" id="agencyMember">
       <div className="full">
@@ -47,7 +48,7 @@ const AgencyMembers = () => {
               backgroundColor: "transparent",
               color: "var(--primarycolor)",
             }}
-            onClick={() => navigate("/search-freelancers")}
+            onClick={() => router.push("/search-freelancers")}
           >
             <FiPlus fontSize={"25px"} />
           </VStack>

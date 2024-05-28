@@ -1,6 +1,6 @@
 import { Text, VStack } from '@chakra-ui/react';
 import React from 'react'
-import HomeLayout from '../HomeLayout';
+import HomeLayout from '../HomeLayout/index.jsx';
 
 const OnbardingCardLayout = (props) => {
     return (

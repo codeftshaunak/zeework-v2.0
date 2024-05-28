@@ -3,7 +3,7 @@ import { useToast, Button } from "@chakra-ui/react";
 import { IoIosMore, IoMdClose } from "react-icons/io";
 import { AiOutlineShareAlt } from "react-icons/ai";
 import { deleteFreelancerGig } from "../../../helpers/APIs/gigApis";
-import { useNavigate } from "react-router-dom";
+import { useRouter } from 'next/router';
 import BtnSpinner from "../../Skeletons/BtnSpinner";
 import UniversalModal from "../../Modals/UniversalModal";
 
@@ -13,14 +13,15 @@ const SingleGig = ({ gig, getAllGigs }) => {
   const [isLoading, setIsLoading] = useState(false);
   const { title, images, _id } = gig;
   const toast = useToast();
-  const navigate = useNavigate();
+  const router = useRouter();
+
 
   // handle details & edit button
   const handleGigEdit = () => {
-    navigate(`/freelancer/gig/edit/${_id}`);
+    router(`/freelancer/gig/edit/${_id}`);
   };
   const handleGigDetails = () => {
-    navigate(`/freelancer/gig/details/${_id}`);
+    router(`/freelancer/gig/details/${_id}`);
   };
 
   const handleDelete = async (value) => {

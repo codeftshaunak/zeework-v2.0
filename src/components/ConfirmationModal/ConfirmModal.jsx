@@ -1,5 +1,5 @@
 import { Button, Text, Image, HStack, useToast } from "@chakra-ui/react";
-import { useNavigate } from "react-router-dom";
+import { useRouter } from 'next/router';
 import { endJobContract } from "../../helpers/APIs/jobApis";
 import { useState } from "react";
 import BtnSpinner from "../Skeletons/BtnSpinner";
@@ -13,7 +13,8 @@ const ConfirmModal = ({
   jobDetails,
 }) => {
   const [isLoading, setIsLoading] = useState(false);
-  const navigate = useNavigate();
+  const router = useRouter();
+
   const toast = useToast();
 
   const handleEndContract = async () => {
@@ -31,7 +32,7 @@ const ConfirmModal = ({
         position: "top-right",
       });
       if (code === 200)
-        navigate(`/submit-review/${job_id}`, {
+        router(`/submit-review/${job_id}`, {
           state: {
             jobDetails: jobDetails,
             receiverDetails: receiverDetails,

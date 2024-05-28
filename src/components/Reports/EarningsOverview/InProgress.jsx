@@ -1,12 +1,13 @@
 import { Button, Tooltip } from "@chakra-ui/react";
 import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useRouter } from 'next/router';
 
 const InProgress = ({ balance }) => {
     const paymentStatus = useSelector(
         (state) => state.profile.profile.payment_verified
     );
-    const navigate = useNavigate();
+    const router = useRouter();
+
 
     return (
         <div className="mt-5 border border-[var(--bordersecondary)] p-8 rounded-lg bg-white grid gap-8">

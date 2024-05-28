@@ -2,12 +2,13 @@ import { FaClock, FaHeadSideVirus } from "react-icons/fa6";
 import { HStack, Text, VStack, Box } from "@chakra-ui/react";
 import { MdCategory } from "react-icons/md";
 import { IoCalendar } from "react-icons/io5";
-import { useNavigate } from "react-router-dom";
+import { useRouter } from 'next/router';
 
 export const JobDetailsSection = ({ jobDetails, jobStatus }) => {
   const { job_details, project_budget, budget, hourly_rate, contract_title } = jobDetails || {};
 
-  const navigate = useNavigate();
+  const router = useRouter();
+
   const formatDate = (dateString) => {
     const options = { day: "numeric", month: "short", year: "numeric" };
     const formattedDate = new Date(dateString).toLocaleDateString(
@@ -27,7 +28,7 @@ export const JobDetailsSection = ({ jobDetails, jobStatus }) => {
             cursor="pointer"
             mb="0"
             alignItems={"end"}
-            onClick={() => navigate(`/find-job/${jobDetails?.job_id}`)}
+            onClick={() => router(`/find-job/${jobDetails?.job_id}`)}
           >
             View Job Post
           </Text>

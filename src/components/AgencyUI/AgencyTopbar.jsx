@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Button, HStack, Progress, VStack } from "@chakra-ui/react";
-import { useNavigate } from "react-router-dom";
+import { useRouter } from 'next/router';
 import { getAllJobs } from "../../helpers/APIs/jobApis";
 import JobCard from "../FindJobUi/JobCard";
 
@@ -8,7 +8,8 @@ const AgencyTopbar = () => {
   const [jobs, setJobs] = useState([]);
   const reverseJob = jobs?.slice().reverse();
   const leatestJob = reverseJob.slice(0, 4);
-  const navigate = useNavigate();
+  const router = useRouter();
+
   const getAllJobList = async () => {
     try {
       const response = await getAllJobs();
@@ -65,7 +66,7 @@ const AgencyTopbar = () => {
             <img src="/images/dashboard/zeework_stats.png" alt="proposals" />
             <div
               onClick={() => {
-                navigate("/my-stats");
+                router.push("/my-stats");
               }}
             >
               <div className="text-sm font-semibold">My Stats</div>
@@ -90,7 +91,7 @@ const AgencyTopbar = () => {
             <img src="/images/dashboard/zeework_jobs.png" alt="proposals" />
             <div
               onClick={() => {
-                navigate("/my-jobs");
+                router.push("/my-jobs");
               }}
             >
               <div className="text-sm font-semibold">My Jobs</div>
@@ -116,7 +117,7 @@ const AgencyTopbar = () => {
         <div className="text-center p-5">
           <button
             className="bg-green-500 text-white px-4 py-2 rounded-md"
-            onClick={() => navigate("/search-job")}
+            onClick={() => router.push("/search-job")}
           >
             See More
           </button>

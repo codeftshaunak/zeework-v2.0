@@ -5,7 +5,7 @@ import { AiFillStar } from "react-icons/ai";
 import { FiEdit2, FiUser } from "react-icons/fi";
 import { RxCross1 } from "react-icons/rx";
 import { TbFileDollar } from "react-icons/tb";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { useLocation, userouter, useParams } from "react-router-dom";
 import UniversalModal from "../Modals/UniversalModal";
 import { deleteJob, getSingleJobDetails } from "../../helpers/APIs/jobApis";
 import BtnSpinner from "../Skeletons/BtnSpinner";
@@ -16,7 +16,8 @@ import { IoLocation } from "react-icons/io5";
 const ViewJobPost = () => {
   const toast = useToast();
   const location = useLocation();
-  const navigate = useNavigate();
+  const router = useRouter();
+
   const { id } = useParams();
   const [jobDetails, setJobDetails] = useState(
     location?.state?.jobDetails ? location?.state?.jobDetails : {}
@@ -57,7 +58,7 @@ const ViewJobPost = () => {
           isClosable: true,
           position: "top-right",
         });
-      navigate("/client-dashboard");
+      router.push("/client-dashboard");
     } catch (error) {
       console.error(error);
       toast({
@@ -239,7 +240,7 @@ const ViewJobPost = () => {
                 loadingText=" Yes, I want to Update"
                 spinner={<BtnSpinner />}
                 onClick={() =>
-                  navigate(`/client-job-update/${_id}`, {
+                  router(`/client-job-update/${_id}`, {
                     state: { jobDetails: jobDetails },
                   })
                 }

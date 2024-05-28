@@ -1,5 +1,5 @@
 import { formatDistanceToNow } from "date-fns";
-import { useNavigate } from "react-router-dom";
+import { useRouter } from 'next/router';
 import { Text, HStack } from "@chakra-ui/react";
 import HorizontalCardSkeleton from "../Skeletons/HorizontalCardSkeleton";
 import { AiOutlineDollarCircle } from "react-icons/ai";
@@ -14,7 +14,8 @@ const JobCard = ({
   showHighlightedSearchTerm,
   isLoading,
 }) => {
-  const navigate = useNavigate();
+  const router = useRouter();
+
   const truncateText = (text, maxLength) => {
     return text?.length > maxLength ? text.slice(0, maxLength) + "..." : text;
   };
@@ -65,7 +66,7 @@ const JobCard = ({
                     <div
                       className="font-medium text-lg md:font-semibold mt-2 mb-2 cursor-pointer md:text-xl capitalize"
                       onClick={() => {
-                        navigate(`/find-job/${job?._id}`);
+                        router(`/find-job/${job?._id}`);
                       }}
                       dangerouslySetInnerHTML={{
                         __html: highlightSearchTerm(job?.title),
@@ -98,7 +99,7 @@ const JobCard = ({
                               : "hidden"
                           }
                           onClick={() => {
-                            navigate(`/find-job/${job?._id}`);
+                            router(`/find-job/${job?._id}`);
                           }}
                         >
                           see more
@@ -122,7 +123,7 @@ const JobCard = ({
                               : "hidden"
                           }
                           onClick={() => {
-                            navigate(`/find-job/${job?._id}`);
+                            router(`/find-job/${job?._id}`);
                           }}
                         >
                           see more
@@ -146,7 +147,7 @@ const JobCard = ({
                               : "hidden"
                           }
                           onClick={() => {
-                            navigate(`/find-job/${job?._id}`);
+                            router(`/find-job/${job?._id}`);
                           }}
                         >
                           see more

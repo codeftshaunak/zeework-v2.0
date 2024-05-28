@@ -2,12 +2,13 @@ import { useRef } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Button, Stack, Text, VStack } from "@chakra-ui/react";
 import HorizontalCardSkeleton from "../../Skeletons/HorizontalCardSkeleton";
-import { useNavigate } from "react-router-dom";
+import { useRouter } from 'next/router';
 import ContractCard from "./ContractCard";
 
 const AgencyContract = ({ contractList, loading }) => {
   const swiperRef = useRef();
-  const navigate = useNavigate();
+  const router = useRouter();
+
 
   return (
     <div className="w-full pb-7">
@@ -81,7 +82,7 @@ const AgencyContract = ({ contractList, loading }) => {
                   backgroundColor: "white",
                   color: "black",
                 }}
-                onClick={() => navigate("/find-job")}
+                onClick={() => router.push("/find-job")}
               >
                 Find Jobs Now
               </Button>

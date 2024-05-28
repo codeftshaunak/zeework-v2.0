@@ -11,7 +11,7 @@ import {
 } from "@chakra-ui/react";
 import { useSelector } from "react-redux";
 import { MainButtonRounded } from "../Button/MainButton";
-import { useNavigate } from "react-router-dom";
+import { useRouter } from 'next/router';
 import { BiDotsVerticalRounded } from "react-icons/bi";
 import Modal from "react-modal";
 import BtnSpinner from "../Skeletons/BtnSpinner";
@@ -64,7 +64,8 @@ export const AgencyFreelancerCard = ({ details, setRemainingMembers }) => {
   const [isMenu, setIsMenu] = useState(false);
   const [isModal, setIsModal] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const navigate = useNavigate();
+  const router = useRouter();
+
   const toast = useToast();
   const { member_position } = details || [];
   const freelancerDetails =
@@ -84,7 +85,7 @@ export const AgencyFreelancerCard = ({ details, setRemainingMembers }) => {
   } = freelancerDetails || [];
 
   const handleClick = (id) => {
-    navigate(`/freelancer/${id}`);
+    router(`/freelancer/${id}`);
   };
 
   const customStyles = {

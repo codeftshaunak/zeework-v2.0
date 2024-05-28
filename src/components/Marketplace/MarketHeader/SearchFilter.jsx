@@ -1,6 +1,6 @@
 import { Box, Radio, RadioGroup, Stack, Text, VStack } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useRouter } from 'next/router';
 import Select from "react-select";
 import { getSkills } from "../../../helpers/APIs/freelancerApis";
 
@@ -9,7 +9,8 @@ export const SearchFilter = ({ categoryOptions }) => {
   const [selectedCategory, setSelectedCategory] = useState({});
   const [selectedSkills, setSelectedSkills] = useState([]);
   const [selectedPrice, setSelectedPrice] = useState("");
-  const navigate = useNavigate();
+  const router = useRouter();
+
 
   const findSkills = async () => {
     try {
@@ -62,8 +63,8 @@ export const SearchFilter = ({ categoryOptions }) => {
 
     const queryString = queryParams.join("&");
 
-    navigate(`/marketplace?${queryString}`, { replace: true });
-  }, [selectedCategory, selectedPrice, selectedSkills, navigate]);
+    router(`/marketplace?${queryString}`, { replace: true });
+  }, [selectedCategory, selectedPrice, selectedSkills, router]);
 
   return (
     <Box

@@ -1,14 +1,15 @@
 import { useContext } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Avatar } from "@chakra-ui/react";
-import { useNavigate } from "react-router-dom";
+import { useRouter } from 'next/router';
 import { useCookies } from "react-cookie";
 import { CurrentUserContext } from "../../Contexts/CurrentUser";
 import UserCardSkeleton from "../Skeletons/UserCardSkeleton";
 import { restorePagesState } from "../../redux/pagesSlice/pagesSlice";
 
 const AgencyUserCard = () => {
-  const navigate = useNavigate();
+  const router = useRouter();
+
   const { hasAgency, activeAgency, userAgencyLoading } =
     useContext(CurrentUserContext);
   const [cookies, setCookie] = useCookies(["activeagency"]);
@@ -21,7 +22,7 @@ const AgencyUserCard = () => {
       setCookie("activeagency", true);
       dispatch(restorePagesState());
     } else {
-      navigate(`/profile`);
+      router(`/profile`);
     }
   };
 
@@ -98,7 +99,7 @@ const AgencyUserCard = () => {
             ) : (
               <button
                 className="text-center text-xs xl:text-lg w-[95%] text-white font-semibold py-2 rounded-md m-auto bg-[var(--primarycolor)]"
-                onClick={() => navigate("/agency-build")}
+                onClick={() => router.push("/agency-build")}
               >
                 Create Your Agency Profile
               </button>
